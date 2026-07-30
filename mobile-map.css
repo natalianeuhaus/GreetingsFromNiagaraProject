@@ -1632,3 +1632,37 @@ html body .site-brand-control:visited {
     line-height:1.25!important;
   }
 }
+
+/* Landscape: remove the empty box beneath the open Layers icon */
+@media (orientation:landscape) and (max-width:1000px) and (max-height:650px){
+
+  .leaflet-bottom.leaflet-right
+  .leaflet-control-layers.leaflet-control-layers-expanded{
+    width:30px!important;
+    min-width:30px!important;
+    height:30px!important;
+    min-height:30px!important;
+
+    padding:0!important;
+    border:0!important;
+    background:transparent!important;
+    box-shadow:none!important;
+    overflow:visible!important;
+  }
+
+  .leaflet-bottom.leaflet-right
+  .leaflet-control-layers-expanded
+  .leaflet-control-layers-toggle{
+    position:absolute!important;
+    top:0!important;
+    left:0!important;
+
+    width:30px!important;
+    min-width:30px!important;
+    height:30px!important;
+
+    border:1px solid #c9c1b3!important;
+    background-color:#f1ede3!important;
+    box-shadow:0 5px 16px rgba(0,0,0,.20)!important;
+  }
+}
