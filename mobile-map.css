@@ -1202,8 +1202,6 @@ html body .site-brand-control:visited {
   .radiation-guide{
     right:calc(var(--landscape-right) + 7px)!important;
   }
-
-  .leaflet-bottom.leaflet-right{}
 }
 
 /* LANDSCAPE PHONE — SAFE MAP FRAME */
@@ -1424,6 +1422,8 @@ html body .site-brand-control:visited {
     border:1px solid #c9c1b3!important;
     font-size:10px!important;
   }
+ 
+  .leaflet-control-layers-expanded .layer-control-close {margin-top:5px !important;}
 }
 
 /* Landscape: clean collapsed left-panel button */
