@@ -542,5 +542,12 @@
     document.head.appendChild(script);
   }
 
-  loadStories();
+loadStories();
+
+window.addEventListener("pageshow", (event) => {
+  if (event.persisted) {
+    loadStories();
+  }
+});
+
 })();
