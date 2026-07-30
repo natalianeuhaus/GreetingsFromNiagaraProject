@@ -1426,7 +1426,10 @@ a:active,
 
     width:48px!important;
     height:48px!important;
-    margin:0!important;
+    margin-top:0!important;
+    margin-bottom:0!important;
+    margin-left:0!important;
+    margin-top:-25px!important;
     padding:0!important;
 
     align-items:center!important;
