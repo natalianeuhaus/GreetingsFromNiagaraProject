@@ -314,7 +314,7 @@ a:active,
    ========================================================== */
 
 .layer-control-heading {
-    display:block !important;
+  display:block !important;
   width:100%;
   box-sizing:border-box;
   margin:0 0 8px;
@@ -339,6 +339,7 @@ a:active,
   font:700 13px/1.2 Arial, sans-serif;
   letter-spacing:.08em;
   text-transform:uppercase;
+  margin-top: 15px !important;
 }
 
 
