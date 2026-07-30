@@ -1,0 +1,394 @@
+/*
+  Greetings from Niagara — interaction layer v1.1
+  Loaded after style.css and site.css so the visual design and map data
+  remain untouched.
+*/
+
+/* Shared motion language */
+.panel-toggle,
+.panel-toggle-icon::before,
+.panel-toggle-icon::after,
+.radiation-guide-button,
+.leaflet-bottom.leaflet-right > .leaflet-control,
+.leaflet-bottom.leaflet-right .leaflet-bar a,
+.leaflet-bottom.leaflet-right .leaflet-bar button,
+.leaflet-bottom.leaflet-right .address-search-button,
+.leaflet-bottom.leaflet-right .leaflet-control-layers-toggle,
+.leaflet-bottom.leaflet-right svg{
+  transition:
+    transform .22s cubic-bezier(.22,.75,.28,1),
+    background-color .22s ease,
+    color .22s ease,
+    box-shadow .22s ease,
+    filter .22s ease,
+    opacity .22s ease,
+    left .22s ease,
+    width .22s ease!important;
+  font-weight: 100 !important;
+}
+
+/* Panel X and collapsed > — same size, no shadow or zoom */
+.panel-toggle{
+  box-shadow:none!important;
+}
+.panel-toggle-icon::before,
+.panel-toggle-icon::after{
+  background:currentColor!important;
+}
+
+.panel:not(.is-collapsed) .panel-toggle:hover,
+.panel:not(.is-collapsed) .panel-toggle:focus-visible,
+.panel.is-collapsed .panel-toggle:hover,
+.panel.is-collapsed .panel-toggle:focus-visible{
+  transform:none!important;
+  background:#4c0b08!important;
+  color:#fff!important;
+  box-shadow:none!important;
+}
+
+/* The existing state change supplies the clean X → > morph. */
+.panel.is-collapsed .panel-toggle-icon::before,
+.panel.is-collapsed .panel-toggle-icon::after{
+  transition:
+    top .22s cubic-bezier(.22,.75,.28,1),
+    left .22s cubic-bezier(.22,.75,.28,1),
+    width .22s cubic-bezier(.22,.75,.28,1),
+    transform .22s cubic-bezier(.22,.75,.28,1)!important;
+}
+
+/* Top-right title and RAD key — invert on hover, with no motion or shadow */
+
+/* Bottom-right control groups move together, like the Follow / Share buttons */
+.leaflet-bottom.leaflet-right > .leaflet-control:hover,
+.leaflet-bottom.leaflet-right > .leaflet-control:focus-within{
+  transform:translateX(-4px) translateY(-1px);
+  box-shadow:5px 5px 0 rgba(5,5,5,.28)!important;
+}
+
+/* Search, center, zoom, and layer buttons */
+.leaflet-bottom.leaflet-right .leaflet-bar a:hover,
+.leaflet-bottom.leaflet-right .leaflet-bar a:focus-visible,
+.leaflet-bottom.leaflet-right .leaflet-bar button:hover,
+.leaflet-bottom.leaflet-right .leaflet-bar button:focus-visible,
+.leaflet-bottom.leaflet-right .address-search-button:hover,
+.leaflet-bottom.leaflet-right .address-search-button:focus-visible,
+.leaflet-bottom.leaflet-right .leaflet-control-layers-toggle:hover,
+.leaflet-bottom.leaflet-right .leaflet-control-layers-toggle:focus-visible{
+  transform:translateX(-2px);
+  background-color:#ded7ca!important;
+}
+
+/* Icon response */
+.leaflet-bottom.leaflet-right .address-search-button:hover svg,
+.leaflet-bottom.leaflet-right .address-search-button:focus-visible svg,
+.leaflet-bottom.leaflet-right .center-map-button:hover svg,
+.leaflet-bottom.leaflet-right .center-map-button:focus-visible svg{
+  transform:scale(1.14);
+}
+.leaflet-bottom.leaflet-right .leaflet-control-layers-toggle:hover,
+.leaflet-bottom.leaflet-right .leaflet-control-layers-toggle:focus-visible{
+  background-size:30px 30px!important;
+}
+.leaflet-bottom.leaflet-right .leaflet-control-zoom-in:hover,
+.leaflet-bottom.leaflet-right .leaflet-control-zoom-in:focus-visible,
+.leaflet-bottom.leaflet-right .leaflet-control-zoom-out:hover,
+.leaflet-bottom.leaflet-right .leaflet-control-zoom-out:focus-visible{
+  font-size:27px!important;
+}
+
+/* Expanded layer panel appears gently */
+.leaflet-control-layers-expanded{
+  transform-origin:right bottom;
+  animation:gfn-layer-panel-in .2s cubic-bezier(.22,.75,.28,1);
+}
+@keyframes gfn-layer-panel-in{
+  from{transform:translateX(10px) scale(.98);opacity:.45}
+  to{transform:translateX(0) scale(1);opacity:1}
+}
+
+/* Address-search panel appears with the same motion */
+.address-search-panel.open{
+  transform-origin:right bottom;
+  animation:gfn-address-panel-in .2s cubic-bezier(.22,.75,.28,1);
+}
+@keyframes gfn-address-panel-in{
+  from{transform:translateX(10px) translateY(5px);opacity:.4}
+  to{transform:translateX(0) translateY(0);opacity:1}
+}
+
+/* Keep keyboard focus clear */
+.panel-toggle:focus-visible,
+.radiation-guide-button:focus-visible,
+.leaflet-bottom.leaflet-right a:focus-visible,
+.leaflet-bottom.leaflet-right button:focus-visible{
+  outline:2px solid #050505;
+  outline-offset:3px;
+}
+
+/* Respect visitors who prefer reduced motion */
+@media(prefers-reduced-motion:reduce){
+  .panel-toggle,
+  .panel-toggle-icon::before,
+  .panel-toggle-icon::after,
+  .site-brand-control,
+  .radiation-guide-button,
+  .leaflet-bottom.leaflet-right > .leaflet-control,
+  .leaflet-bottom.leaflet-right .leaflet-bar a,
+  .leaflet-bottom.leaflet-right .leaflet-bar button,
+  .leaflet-bottom.leaflet-right .address-search-button,
+  .leaflet-bottom.leaflet-right .leaflet-control-layers-toggle,
+  .leaflet-bottom.leaflet-right svg{
+    transition:none!important;
+  }
+  .leaflet-control-layers-expanded,
+  .address-search-panel.open{
+    animation:none!important;
+  }
+}
+
+/* v1.216 — left-side close controls morph from X to a back chevron on hover */
+.panel:not(.is-collapsed) .panel-toggle:hover .panel-toggle-icon::before,
+.panel:not(.is-collapsed) .panel-toggle:focus-visible .panel-toggle-icon::before,
+.panel:not(.is-collapsed) .panel-toggle:hover .panel-toggle-icon::after,
+.panel:not(.is-collapsed) .panel-toggle:focus-visible .panel-toggle-icon::after{
+  left:11px;
+  width:15px;
+}
+.panel:not(.is-collapsed) .panel-toggle:hover .panel-toggle-icon::before,
+.panel:not(.is-collapsed) .panel-toggle:focus-visible .panel-toggle-icon::before{
+  top:13px;
+  transform:rotate(-45deg);
+}
+.panel:not(.is-collapsed) .panel-toggle:hover .panel-toggle-icon::after,
+.panel:not(.is-collapsed) .panel-toggle:focus-visible .panel-toggle-icon::after{
+  top:24px;
+  transform:rotate(45deg);
+}
+
+/* The website drawer uses the same visible X → < response. */
+.global-menu-close{
+  font-size:0!important;
+}
+.global-menu-close::before,
+.global-menu-close::after{
+  content:"";
+  position:absolute;
+  left:11px;
+  top:19px;
+  width:20px;
+  height:2px;
+  background:currentColor;
+  transform-origin:center;
+  transition:
+    top .22s cubic-bezier(.22,.75,.28,1),
+    left .22s cubic-bezier(.22,.75,.28,1),
+    width .22s cubic-bezier(.22,.75,.28,1),
+    transform .22s cubic-bezier(.22,.75,.28,1)!important;
+}
+.global-menu-close::before{transform:rotate(45deg)}
+.global-menu-close::after{transform:rotate(-45deg)}
+.global-menu-close:hover,
+.global-menu-close:focus-visible{
+  transform:none!important;
+}
+.global-menu-close:hover::before,
+.global-menu-close:focus-visible::before,
+.global-menu-close:hover::after,
+.global-menu-close:focus-visible::after{
+  left:11px;
+  width:16px;
+}
+.global-menu-close:hover::before,
+.global-menu-close:focus-visible::before{
+  top:14px;
+  transform:rotate(-45deg);
+}
+.global-menu-close:hover::after,
+.global-menu-close:focus-visible::after{
+  top:25px;
+  transform:rotate(45deg);
+}
+
+/* Deep-red hover: left panel < */
+.panel:not(.is-collapsed) .panel-toggle:hover,
+.panel:not(.is-collapsed) .panel-toggle:focus-visible {
+  background-color: #4c0b08 !important;
+  color: #fff !important;
+  box-shadow: none !important;
+}
+
+/* RAD Key button — compact icon, expands left on hover/open */
+.radiation-guide{
+  background:transparent!important;
+  box-shadow:none!important;
+}
+
+.radiation-guide-button{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:0!important;
+
+  box-sizing:border-box!important;
+  width:52px!important;
+  height:5px!important;
+  padding:6px!important;
+
+  background:#F7D255!important;
+  color:#fff!important;
+  border:0!important;
+  box-shadow:none!important;
+  outline-offset:3px;
+
+  overflow:hidden!important;
+  white-space:nowrap!important;
+
+  transform:none!important;
+  filter:none!important;
+
+  transition:
+    width 240ms cubic-bezier(.22,.75,.28,1),
+    background-color 180ms ease,
+    color 180ms ease!important;
+}
+
+/* Radiation symbol stays fixed on the right */
+.radiation-guide-icon{
+  order:2;
+  display:block!important;
+
+  width:40px!important;
+  height:40px!important;
+  min-width:40px!important;
+  flex:0 0 40px!important;
+
+  object-fit:cover!important;
+  transform:none!important;
+  filter:none!important;
+}
+
+/* Label is hidden in the compact state */
+.radiation-guide-button span{
+  order:1;
+  display:block;
+
+  max-width:0;
+  margin-right:0;
+  opacity:0;
+  overflow:hidden;
+
+  background:transparent!important;
+
+  font-size:20px!important;
+  font-weight:500!important;
+  letter-spacing:.06em;
+  line-height:1;
+  font-family:Arial,Helvetica,sans-serif!important;
+
+  transition:
+    max-width 240ms cubic-bezier(.22,.75,.28,1),
+    margin-right 240ms ease,
+    opacity 140ms ease!important;
+}
+
+/* Expand toward the left while hovered or while the legend is open */
+.radiation-guide-button:hover,
+.radiation-guide-button[aria-expanded="true"]{
+  width:175px!important;
+  background:#F7D255!important;
+  color:#000!important;
+  box-shadow:none!important;
+  transform:none!important;
+  filter:none!important;
+  font-family:Arial,Helvetica,sans-serif!important;
+  padding: 20px !important;
+}
+
+.radiation-guide-button:hover span,
+.radiation-guide-button[aria-expanded="true"] span{
+  max-width:175px!important;
+  margin-right:12px!important;
+  opacity:1!important;
+}
+
+/* Return cleanly to the icon-only state after closing */
+.radiation-guide-button[aria-expanded="false"]:not(:hover){
+  width:65px!important;
+  height:5px!important;
+  padding:20px!important;
+  background:#F7D255!important;
+  box-shadow:none!important;
+  transform:none!important;
+  filter:none!important;
+}
+
+/* Closed left panel: red reopen button */
+.panel.is-collapsed .panel-toggle {
+  background: #4c0b08 !important;
+  color: #fff !important;
+  box-shadow: none !important;
+}
+
+/* Hover to reopen: darker blood red */
+.panel.is-collapsed .panel-toggle:hover,
+.panel.is-collapsed .panel-toggle:focus-visible {
+  background: #760b0b !important;
+  color: #fff !important;
+  box-shadow: 4px 5px 0 rgba(0, 0, 0, 0.3) !important;
+  transform: none !important;
+}
+
+/* Make the entire RAD Key button clickable, including the symbol */
+.radiation-guide {
+  padding: 0 !important;
+}
+
+.radiation-guide-button {
+  cursor: pointer !important;
+  touch-action: manipulation;
+}
+
+/* Text and PNG cannot intercept clicks or taps */
+.radiation-guide-button span,
+.radiation-guide-button img,
+.radiation-guide-icon {
+  pointer-events: none !important;
+  user-select: none !important;
+  -webkit-user-drag: none !important;
+}
+
+/* Animate the RAD Key Legend text */
+.radiation-guide-button span {
+  transform: translateX(14px);
+  filter: blur(3px);
+  letter-spacing: 0.14em;
+  transition:
+    max-width 240ms cubic-bezier(.22,.75,.28,1),
+    margin-right 240ms ease,
+    opacity 160ms ease,
+    transform 240ms cubic-bezier(.22,.75,.28,1),
+    filter 220ms ease,
+    letter-spacing 240ms ease !important;
+}
+
+.radiation-guide-button:hover span,
+.radiation-guide-button[aria-expanded="true"] span {
+  transform: translateX(0);
+  filter: blur(0);
+  letter-spacing: 0.04em;
+}
+
+/* Bottom border on RAD Key button */
+.radiation-guide-button {
+  border-bottom: 5px solid #000 !important;
+}
+
+/* Move the open RAD Key Legend left of the map controls */
+@media (min-width: 701px) {
+  .radiation-guide-panel.open {
+    position: relative;
+    right: 70px;
+  }
+}
+
+

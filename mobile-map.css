@@ -1,0 +1,1634 @@
+/*
+  Greetings from Niagara — portrait mobile map layout v1.1
+  Mobile-only corrections: visible panel arrow, closable RAD legend,
+  compact map controls, and a single-line homepage title.
+*/
+
+.rotate-to-view{
+  display:none!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+}
+
+@media (max-width:700px){
+  html,
+  body,
+  #map{
+    width:100%!important;
+    height:100vh!important;
+    height:100dvh!important;
+    min-height:0!important;
+    margin:0!important;
+  }
+
+  body{
+    overflow:hidden!important;
+    overscroll-behavior:none;
+    background:#050505;
+  }
+
+  body > *:not(.rotate-to-view){
+    visibility:visible!important;
+  }
+
+  #map,
+  .leaflet-container{
+    width:100vw!important;
+    height:100vh!important;
+    height:100dvh!important;
+    min-height:0!important;
+  }
+
+  /* Website menu: fixed black square at the upper-left. */
+  body:not(.site-page) .global-menu-button--map{
+    position:fixed!important;
+    z-index:1200!important;
+    top:max(10px,env(safe-area-inset-top))!important;
+    left:max(0px,env(safe-area-inset-left))!important;
+    right:auto!important;
+    bottom:auto!important;
+    transform:none!important;
+    translate:none!important;
+    width:72px!important;
+    min-width:52px!important;
+    height:52px!important;
+    padding:0!important;
+    justify-content:center!important;
+    gap:0!important;
+    background:#050505!important;
+    color:#f1ede3!important;
+    box-shadow:none!important;
+    margin-top: -20px;
+  }
+
+  .map-credit {opacity: 0!important;}
+
+  body:not(.site-page) .global-menu-button--map > span:last-child{
+    position:absolute!important;
+    width:1px!important;
+    height:1px!important;
+    padding:0!important;
+    margin:-1px!important;
+    overflow:hidden!important;
+    clip:rect(0,0,0,0)!important;
+    white-space:nowrap!important;
+    border:0!important;
+  }
+
+  body:not(.site-page) .global-menu-button--map .global-menu-lines{
+    width:25px!important;
+    height:16px!important;
+  }
+
+  html body .site-brand-control,
+html body .site-brand-control:link,
+html body .site-brand-control:visited {
+  background-color: #050505 !important;
+  background-image: none !important;
+  color: #f1ede3 !important;
+  -webkit-text-fill-color: #f1ede3 !important;
+  letter-spacing:.12em !important;
+  text-decoration: none !important;
+  font-weight: 400 !important;
+  font-size: 1.4em !important;
+  box-shadow: 8px 8px 0 rgba(5, 5, 5, 0.32) !important;
+  opacity: 1 !important;
+}
+  .site-brand-control {}
+  
+  /* Open information drawer. */
+  .panel:not(.is-collapsed){
+    position:fixed!important;
+    z-index:1100!important;
+    inset:0 auto 0 0!important;
+    transform:none!important;
+    translate:none!important;
+    width:min(88vw,280px)!important;
+    height:100vh!important;
+    height:100dvh!important;
+    max-height:none!important;
+    border:0!important;
+    border-right:1px solid #c9c1b3!important;
+    box-shadow:12px 0 30px rgba(0,0,0,.34)!important;
+    overflow:hidden!important;
+    margin-top: 65px!important;
+  }
+
+  .panel:not(.is-collapsed) .header{
+    padding:76px 17px 12px!important;
+  }
+
+  .panel:not(.is-collapsed) .header h1{
+    font-size:23px!important;
+    line-height:1.04!important;
+    margin-top: -30px;
+  }
+
+  .panel:not(.is-collapsed) .header p{
+    font-size:11px!important;
+  }
+
+  .panel:not(.is-collapsed) .tabs{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+
+  .panel:not(.is-collapsed) .tab{
+    min-height:42px!important;
+    padding:9px 4px!important;
+    border-bottom:1px solid #c9c1b3!important;
+    font-size:9px!important;
+    white-space:normal!important;
+  }
+
+  .panel:not(.is-collapsed) .view{
+    min-height:0!important;
+    overflow-y:auto!important;
+    overscroll-behavior:contain;
+    -webkit-overflow-scrolling:touch;
+    padding:14px 17px calc(24px + env(safe-area-inset-bottom))!important;
+  }
+
+  /*
+    Collapsed drawer: reset the desktop translate/negative positioning.
+    This is the arrow directly below the MENU button.
+  */
+  .panel.is-collapsed{
+    position:fixed!important;
+    z-index:1190!important;
+    inset:auto!important;
+    top:calc(max(10px,env(safe-area-inset-top)) + 62px)!important;
+    left:max(10px,env(safe-area-inset-left))!important;
+    right:auto!important;
+    bottom:auto!important;
+    transform:none!important;
+    translate:none!important;
+    margin:0!important;
+    width:52px!important;
+    min-width:52px!important;
+    max-width:52px!important;
+    height:52px!important;
+    min-height:52px!important;
+    max-height:52px!important;
+    border:0!important;
+    background:transparent!important;
+    box-shadow:none!important;
+    backdrop-filter:none!important;
+    overflow:visible!important;
+  }
+
+  .panel.is-collapsed > *:not(.panel-toggle){
+    display:none!important;
+  }
+
+  .panel.is-collapsed .panel-toggle,
+  .panel:not(.is-collapsed) .panel-toggle{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    margin:0!important;
+    padding:0!important;
+    border:0!important;
+    border-radius:0!important;
+    background:#050505!important;
+    color:#f1ede3!important;
+    box-shadow:none!important;
+  }
+
+  .panel.is-collapsed .panel-toggle{
+    position:fixed!important;
+    z-index:1201!important;
+    inset:auto!important;
+    top:calc(max(10px,env(safe-area-inset-top)) + 5px)!important;
+    left:max(10px,env(safe-area-inset-left))!important;
+    right:auto!important;
+    bottom:auto!important;
+    transform:none!important;
+    translate:none!important;
+    width:48px!important;
+    min-width:42px!important;
+    height:50px!important;
+    margin-left:-20px !important;
+    color:#fff!important;
+    background-color:#7d0600 !important;
+  }
+
+  .panel.is-collapsed .panel-toggle:hover,
+  .panel.is-collapsed .panel-toggle:focus-visible,
+  .panel:not(.is-collapsed) .panel-toggle:hover,
+  .panel:not(.is-collapsed) .panel-toggle:focus-visible{
+    background:#7d0600!important;
+    color:#fff!important;
+    box-shadow:none!important;
+  }
+
+  /* Draw a reliable chevron instead of depending on desktop icon rules. */
+  .panel-toggle-icon{
+    display:block!important;
+    position:relative!important;
+    width:17px!important;
+    height:17px!important;
+    min-width:17px!important;
+    margin:0!important;
+    padding:0!important;
+    background:none!important;
+    border:0!important;
+    border-top:4px solid currentColor!important;
+    border-right:4px solid currentColor!important;
+    box-sizing:border-box!important;
+    transform:rotate(45deg)!important;
+    transform-origin:center!important;
+  }
+
+  .panel-toggle-icon::before,
+  .panel-toggle-icon::after{
+    content:none!important;
+    display:none!important;
+  }
+
+  .panel:not(.is-collapsed) .panel-toggle{
+    position:absolute!important;
+    z-index:5!important;
+    top:max(0px,env(safe-area-inset-top))!important;
+    right:0px!important;
+    left:auto!important;
+    bottom:auto!important;
+    transform:none!important;
+    translate:none!important;
+    width:48px!important;
+    height:45px!important;
+  }
+
+  .panel:not(.is-collapsed) .panel-toggle-icon{
+    transform:rotate(-135deg)!important;
+  }
+
+  /*
+    Homepage title: occupy the clean space to the right of MENU and stay on
+    one line instead of breaking into GREETINGS / FROM / NIAGARA.
+  */
+  .leaflet-top.leaflet-right{
+    top:max(10px,env(safe-area-inset-top))!important;
+    left:calc(max(10px,env(safe-area-inset-left)) + 62px)!important;
+    right:max(10px,env(safe-area-inset-right))!important;
+    width:auto!important;
+    max-width:none!important;
+    margin:0!important;
+  }
+
+  .leaflet-top.leaflet-right > .leaflet-control{
+    margin-right:0!important;
+  }
+
+  .site-brand-control{
+    box-sizing:border-box!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    width:110%!important;
+    max-width:none!important;
+    min-width:0!important;
+    height:52px!important;
+    min-height:52px!important;
+    padding:0 10px!important;
+    line-height:1!important;
+    white-space:nowrap!important;
+    text-align:center!important;
+    overflow:hidden!important;
+  }
+
+  .site-brand-control a {font-size:11px!important;letter-spacing:.10em!important;}
+
+  .radiation-guide{
+    margin-top:6px!important;
+  }
+
+  .radiation-guide-button,
+  .radiation-guide-button[aria-expanded="false"]:not(:hover){
+    width:50px!important;
+    min-width:42px!important;
+    height:42px!important;
+    padding:3px!important;
+    margin-right:;
+    margin-top: 100px !important;
+    border: 2px solid #bfa240 !important;
+  }
+
+  .radiation-guide-icon{
+    width:33px!important;
+    height:33px!important;
+    min-width:33px!important;
+    flex-basis:33px!important;
+    padding-right:5px;
+  }
+
+  /* RAD legend gets a permanent, visible mobile close control. */
+  .radiation-guide-panel.open{
+    position:fixed!important;
+    z-index:1300!important;
+    box-sizing:border-box!important;
+    inset:auto 10px calc(10px + env(safe-area-inset-bottom)) 10px!important;
+    top:72px!important;
+    width:200px!important;
+    max-width:250px!important;
+    height:auto!important;
+    max-height:calc(100dvh - 82px - env(safe-area-inset-bottom))!important;
+    margin-right:0!important;
+    margin-top:0!important;
+    margin-bottom:0!important;
+    margin-left:180px!important;
+    overflow:auto!important;
+    -webkit-overflow-scrolling:touch;
+  }
+  
+ .radiation-guide-button:hover, .radiation-guide-button[aria-expanded="true"] {   
+   padding: 6px !important;
+   width: 55px !important;
+    }
+  
+  .radiation-guide-mobile-header{
+    position:sticky!important;
+    z-index:4!important;
+    top:0!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    gap:14px!important;
+    min-height:46px!important;
+    margin:-1px -1px 16px!important;
+    padding:0 8px 0 16px!important;
+    background:#050505!important;
+    color:#f1ede3!important;
+    border-bottom:1px solid #c9c1b3!important;
+    font-size:11px!important;
+    font-weight:700!important;
+    letter-spacing:.09em!important;
+  }
+
+  .radiation-guide-close{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    width:40px!important;
+    min-width:40px!important;
+    height:40px!important;
+    margin:0!important;
+    padding:0 0 3px!important;
+    border:0!important;
+    border-left:1px solid rgba(241,237,227,.28)!important;
+    border-radius:0!important;
+    background:#050505!important;
+    color:#f1ede3!important;
+    font:300 31px/1 Arial,sans-serif!important;
+    cursor:pointer!important;
+  }
+
+  .radiation-guide-close:active,
+  .radiation-guide-close:focus-visible{
+    background:#9e2b25!important;
+    color:#fff!important;
+  }
+
+  /* Compact bottom-right map controls. */
+  .leaflet-bottom.leaflet-right{
+    right:max(8px,env(safe-area-inset-right))!important;
+    bottom:max(10px,env(safe-area-inset-bottom))!important;
+    margin:0!important;
+  }
+
+  .leaflet-bottom.leaflet-right > .leaflet-control{
+    margin-right:0!important;
+  }
+
+  .leaflet-bottom.leaflet-right .leaflet-bar a,
+  .leaflet-bottom.leaflet-right .leaflet-bar button,
+  .leaflet-bottom.leaflet-right .address-search-button,
+  .leaflet-bottom.leaflet-right .leaflet-control-layers-toggle{
+    width:40px!important;
+    min-width:40px!important;
+    height:40px!important;
+    line-height:40px!important;
+  }
+
+  .leaflet-bottom.leaflet-right .leaflet-control-zoom a{
+    font-size:24px!important;
+  }
+
+  .leaflet-bottom.leaflet-right .address-search-button,
+  .leaflet-bottom.leaflet-right .leaflet-control-layers-toggle{
+    background-size:21px 21px!important;
+  }
+
+  /* Other open control panels remain inside the portrait viewport. */
+  .leaflet-control-layers-expanded,
+  .address-search-panel.open{
+    box-sizing:border-box!important;
+    width:calc(100vw - 20px)!important;
+    max-width:calc(100vw - 20px)!important;
+    max-height:calc(100dvh - 150px)!important;
+    overflow:auto!important;
+    -webkit-overflow-scrolling:touch;
+    font-size:11px!important;
+  }
+
+  .leaflet-popup-content-wrapper{
+    max-width:calc(100vw - 32px)!important;
+    max-height:calc(100dvh - 150px)!important;
+    overflow:auto!important;
+  }
+
+  .leaflet-popup-content{
+    width:auto!important;
+    max-width:calc(100vw - 68px)!important;
+    margin:14px 16px!important;
+    overflow-wrap:anywhere!important;
+  }
+
+  .leaflet-control-attribution{
+    max-width:72vw!important;
+    font-size:8px!important;
+    line-height:1.15!important;
+  }
+
+  .global-menu-panel{
+    width:min(92vw,390px)!important;
+    padding:74px 28px calc(40px + env(safe-area-inset-bottom))!important;
+  }
+}
+
+@media (max-width:380px){
+  .site-brand-control{
+    font-size:9px!important;
+    letter-spacing:.07em!important;
+  }
+
+  .panel:not(.is-collapsed){
+    width:92vw!important;
+  }
+}
+
+@media (max-width:700px){
+
+  /* Push Greetings from Niagara flush to the right edge */
+  .leaflet-top.leaflet-right{
+    left:auto!important;
+    right:0!important;
+    top:0!important;
+    margin:0!important;
+  }
+
+  .site-brand-control{
+    margin:0!important;
+    border-radius:0!important;
+  }
+}
+
+/* =========================================================
+   LANDSCAPE PHONES
+   ========================================================= */
+
+@media (orientation:landscape) and (max-height:650px) and (pointer:coarse){
+
+  html,
+  body,
+  #map,
+  .leaflet-container{
+    width:100vw!important;
+    height:100vh!important;
+    height:100dvh!important;
+    min-height:0!important;
+    margin:0!important;
+  }
+
+  body{
+    overflow:hidden!important;
+    background:#050505!important;
+  }
+
+  .rotate-to-view{
+    display:none!important;
+  }
+
+  /* MENU button — upper-left */
+  body:not(.site-page) .global-menu-button--map{
+    position:fixed!important;
+    z-index:1400!important;
+    top:0!important;
+    left:0!important;
+    right:auto!important;
+    bottom:auto!important;
+    width:72px!important;
+    min-width:72px!important;
+    height:52px!important;
+    margin:0!important;
+    padding:0!important;
+    transform:none!important;
+    background:#050505!important;
+    color:#f1ede3!important;
+    border-radius:0!important;
+    box-shadow:none!important;
+  }
+
+  body:not(.site-page) .global-menu-button--map > span:last-child{
+    position:absolute!important;
+    width:1px!important;
+    height:1px!important;
+    overflow:hidden!important;
+    clip:rect(0,0,0,0)!important;
+  }
+
+  body:not(.site-page) .global-menu-button--map .global-menu-lines{
+    width:25px!important;
+    height:16px!important;
+  }
+
+  /* Top title bar — from MENU to the right edge */
+  .leaflet-top.leaflet-right{
+    position:fixed!important;
+    z-index:1300!important;
+    top:0!important;
+    left:72px!important;
+    right:0!important;
+    width:auto!important;
+    height:52px!important;
+    margin:0!important;
+  }
+
+  .leaflet-top.leaflet-right > .leaflet-control{
+    margin:0!important;
+  }
+
+  /*
+    Replace the original one-line text visually with:
+    GREETINGS FROM
+    NIAGARA
+  */
+  .site-brand-control{
+    box-sizing:border-box!important;
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:center!important;
+    justify-content:center!important;
+    width:100%!important;
+    max-width:none!important;
+    height:52px!important;
+    min-height:52px!important;
+    margin:0!important;
+    padding:3px 12px!important;
+    overflow:hidden!important;
+    border-radius:0!important;
+    background:#050505!important;
+    color:#f1ede3!important;
+    font-size:0!important;
+    line-height:1!important;
+    text-align:center!important;
+  }
+
+  .site-brand-control::before{
+    content:"GREETINGS FROM";
+    display:block;
+    font-size:10px!important;
+    line-height:1.05!important;
+    letter-spacing:.18em!important;
+    white-space:nowrap!important;
+  }
+
+  .site-brand-control::after{
+    content:"NIAGARA";
+    display:block;
+    margin-top:3px;
+    font-size:10px!important;
+    line-height:1.05!important;
+    letter-spacing:.22em!important;
+    white-space:nowrap!important;
+  }
+
+  /* Collapsed information-panel arrow */
+  .panel.is-collapsed{
+    position:fixed!important;
+    z-index:1290!important;
+    top:62px!important;
+    left:0!important;
+    right:auto!important;
+    bottom:auto!important;
+    width:52px!important;
+    min-width:52px!important;
+    max-width:52px!important;
+    height:52px!important;
+    min-height:52px!important;
+    max-height:52px!important;
+    margin:0!important;
+    transform:none!important;
+    translate:none!important;
+    overflow:visible!important;
+    border:0!important;
+    background:transparent!important;
+    box-shadow:none!important;
+  }
+
+  .panel.is-collapsed > *:not(.panel-toggle){
+    display:none!important;
+  }
+
+  .panel.is-collapsed .panel-toggle{
+    position:fixed!important;
+    z-index:1401!important;
+    top:62px!important;
+    left:0!important;
+    right:auto!important;
+    bottom:auto!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    width:52px!important;
+    min-width:52px!important;
+    height:52px!important;
+    margin:0!important;
+    padding:0!important;
+    transform:none!important;
+    background:#9e2b25!important;
+    color:#fff!important;
+    border:0!important;
+    border-radius:0!important;
+    box-shadow:none!important;
+  }
+
+  /* Open information drawer */
+  .panel:not(.is-collapsed){
+    position:fixed!important;
+    z-index:1350!important;
+    top:52px!important;
+    left:0!important;
+    right:auto!important;
+    bottom:0!important;
+    width:min(42vw,360px)!important;
+    min-width:300px!important;
+    height:calc(100dvh - 52px)!important;
+    max-height:calc(100dvh - 52px)!important;
+    margin:0!important;
+    transform:none!important;
+    translate:none!important;
+    overflow:hidden!important;
+    border:0!important;
+    border-right:1px solid #c9c1b3!important;
+    box-shadow:12px 0 30px rgba(0,0,0,.34)!important;
+  }
+
+  .panel:not(.is-collapsed) .panel-toggle{
+    position:absolute!important;
+    z-index:20!important;
+    top:0!important;
+    right:0!important;
+    left:auto!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    width:48px!important;
+    height:48px!important;
+    margin:0!important;
+    padding:0!important;
+    transform:none!important;
+    background:#9e2b25!important;
+    color:#fff!important;
+    border:0!important;
+    border-radius:0!important;
+    box-shadow:none!important;
+  }
+
+  .panel-toggle-icon{
+    display:block!important;
+    width:16px!important;
+    height:16px!important;
+    border-top:4px solid currentColor!important;
+    border-right:4px solid currentColor!important;
+    background:none!important;
+    box-sizing:border-box!important;
+    transform:rotate(45deg)!important;
+  }
+
+  .panel:not(.is-collapsed) .panel-toggle-icon{
+    transform:rotate(-135deg)!important;
+  }
+
+  .panel:not(.is-collapsed) .header{
+    padding:14px 58px 10px 18px!important;
+  }
+
+  .panel:not(.is-collapsed) .header h1{
+    margin:0 0 7px!important;
+    font-size:19px!important;
+    line-height:1!important;
+  }
+
+  .panel:not(.is-collapsed) .header p{
+    margin:0!important;
+    font-size:10px!important;
+    line-height:1.3!important;
+  }
+
+  /* Four tabs across in landscape */
+  .panel:not(.is-collapsed) .tabs{
+    display:grid!important;
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  }
+
+  .panel:not(.is-collapsed) .tab{
+    min-height:38px!important;
+    padding:7px 3px!important;
+    font-size:8px!important;
+    white-space:normal!important;
+  }
+
+  .panel:not(.is-collapsed) .view{
+    min-height:0!important;
+    height:auto!important;
+    overflow-y:auto!important;
+    -webkit-overflow-scrolling:touch;
+    overscroll-behavior:contain;
+    padding:12px 18px calc(18px + env(safe-area-inset-bottom))!important;
+  }
+
+  /* RAD button below the title bar */
+  .radiation-guide{
+    position:fixed!important;
+    z-index:1250!important;
+    top:60px!important;
+    right:8px!important;
+    margin:0!important;
+  }
+
+  .radiation-guide-button,
+  .radiation-guide-button[aria-expanded="false"]:not(:hover){
+    width:38px!important;
+    min-width:38px!important;
+    height:38px!important;
+    margin:0!important;
+    padding:3px!important;
+  }
+
+  .radiation-guide-icon{
+    width:29px!important;
+    height:29px!important;
+    min-width:29px!important;
+  }
+
+  /* RAD panel fits the shorter landscape viewport */
+  .radiation-guide-panel.open{
+    position:fixed!important;
+    z-index:1500!important;
+    top:58px!important;
+    right:54px!important;
+    bottom:8px!important;
+    left:auto!important;
+    width:min(42vw,340px)!important;
+    max-width:340px!important;
+    height:auto!important;
+    max-height:calc(100dvh - 66px)!important;
+    margin:0!important;
+    overflow:auto!important;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  /* Compact right-side map controls */
+  .leaflet-bottom.leaflet-right{
+    right:8px!important;
+    bottom:8px!important;
+    margin:0!important;
+  }
+
+  .leaflet-bottom.leaflet-right > .leaflet-control{
+    margin-right:0!important;
+    margin-left: 150px !important;
+  }
+
+  .leaflet-bottom.leaflet-right .leaflet-bar a,
+  .leaflet-bottom.leaflet-right .leaflet-bar button,
+  .leaflet-bottom.leaflet-right .address-search-button,
+  .leaflet-bottom.leaflet-right .leaflet-control-layers-toggle{
+    width:36px!important;
+    min-width:36px!important;
+    height:36px!important;
+    line-height:36px!important;
+  }
+
+  .leaflet-bottom.leaflet-right .leaflet-control-zoom a{
+    font-size:21px!important;
+  }
+
+  .leaflet-bottom.leaflet-right .address-search-button,
+  .leaflet-bottom.leaflet-right .leaflet-control-layers-toggle{
+    background-size:19px 19px!important;
+  }
+
+  /* Open search/layer controls */
+  .leaflet-control-layers-expanded,
+  .address-search-panel.open{
+    box-sizing:border-box!important;
+    width:min(46vw,380px)!important;
+    max-width:calc(100vw - 70px)!important;
+    max-height:calc(100dvh - 70px)!important;
+    overflow:auto!important;
+    -webkit-overflow-scrolling:touch;
+    font-size:10px!important;
+  }
+
+  /* Popups stay within the short landscape screen */
+  .leaflet-popup-content-wrapper{
+    max-width:min(430px,60vw)!important;
+    max-height:calc(100dvh - 90px)!important;
+    overflow:auto!important;
+  }
+
+  .leaflet-popup-content{
+    width:auto!important;
+    max-width:calc(60vw - 40px)!important;
+    margin:12px 14px!important;
+    overflow-wrap:anywhere!important;
+  }
+
+  .leaflet-control-attribution{
+    max-width:55vw!important;
+    font-size:7px!important;
+    line-height:1.1!important;
+  }
+
+  .global-menu-panel{
+    width:min(62vw,390px)!important;
+    height:100dvh!important;
+    overflow-y:auto!important;
+  }
+}
+
+/* =========================================================
+   FINAL LANDSCAPE PHONE OVERRIDE
+   Paste at the very bottom of mobile-map.css
+   ========================================================= */
+
+@media (orientation:landscape) and (max-width:1000px) and (max-height:650px){
+
+  html,
+  body,
+  #map,
+  .leaflet-container{
+    width:100vw!important;
+    height:100vh!important;
+    height:100dvh!important;
+    margin:0!important;
+    overflow:hidden!important;
+  }
+
+  /* MENU — top-left */
+  body:not(.site-page) .global-menu-button--map{
+    position:fixed!important;
+    z-index:1500!important;
+    top:0!important;
+    left:0!important;
+    right:auto!important;
+    width:64px!important;
+    min-width:64px!important;
+    height:47px!important;
+    margin:0!important;
+    padding:0!important;
+    transform:none!important;
+    border-radius:0!important;
+    background:#050505!important;
+    color:#f1ede3!important;
+    box-shadow:none!important;
+  }
+
+  body:not(.site-page) .global-menu-button--map > span:last-child{
+    position:absolute!important;
+    width:1px!important;
+    height:1px!important;
+    overflow:hidden!important;
+    clip:rect(0,0,0,0)!important;
+  }
+
+  body:not(.site-page) .global-menu-button--map .global-menu-lines{
+    width:25px!important;
+    height:16px!important;
+  }
+
+  /* Title bar — fills the space beside MENU */
+  .leaflet-top.leaflet-right{
+    position:fixed!important;
+    z-index:1400!important;
+    top:0!important;
+    left:64px!important;
+    right:0!important;
+    width:auto!important;
+    height:56px!important;
+    margin:0!important;
+  }
+
+  .leaflet-top.leaflet-right > .leaflet-control{
+    margin:0!important;
+  }
+
+  /*
+    Hide every older title version so the title cannot duplicate.
+  */
+.site-brand-control{
+  box-sizing:border-box!important;
+  display:flex!important;
+  flex-direction:row!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  width:100%!important;
+  max-width:none!important;
+  min-width:0!important;
+  height:56px!important;
+  min-height:56px!important;
+  margin:0!important;
+  padding:3px 18px!important;
+  overflow:hidden!important;
+  border-radius:0!important;
+  background:#050505!important;
+  color:#f1ede3!important;
+  font-size:17px!important;
+  line-height:1!important;
+  letter-spacing:.18em!important;
+  text-align:right!important;
+  white-space:nowrap!important;
+}
+
+  .site-brand-control::before{
+    content:"GREETINGS FROM"!important;
+    display:none!important;
+    font-size:11px!important;
+    line-height:1!important;
+    letter-spacing:.20em!important;
+    white-space:nowrap!important;
+  }
+
+  .site-brand-control::after{
+    content:"NIAGARA"!important;
+    display:none!important;
+    margin-top:5px!important;
+    font-size:10px!important;
+    line-height:1!important;
+    letter-spacing:.27em!important;
+    white-space:nowrap!important;
+  }
+
+  /* Closed red arrow beneath MENU */
+  .panel.is-collapsed{
+    position:fixed!important;
+    z-index:1450!important;
+    top:66px!important;
+    left:0!important;
+    right:auto!important;
+    bottom:auto!important;
+    width:52px!important;
+    min-width:52px!important;
+    max-width:52px!important;
+    height:52px!important;
+    min-height:52px!important;
+    max-height:52px!important;
+    margin:0!important;
+    transform:none!important;
+    translate:none!important;
+    overflow:visible!important;
+    border:0!important;
+    background:transparent!important;
+    box-shadow:none!important;
+  }
+
+  .panel.is-collapsed > *:not(.panel-toggle){
+    display:none!important;
+  }
+
+  .panel.is-collapsed .panel-toggle{
+    position:fixed!important;
+    z-index:1501!important;
+    top:66px!important;
+    left:0!important;
+    right:auto!important;
+    bottom:auto!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    width:52px!important;
+    min-width:52px!important;
+    height:52px!important;
+    margin:0!important;
+    padding:0!important;
+    transform:none!important;
+    border:0!important;
+    border-radius:0!important;
+    background:#9e2b25!important;
+    color:#fff!important;
+    box-shadow:none!important;
+  }
+
+  /* Open information drawer */
+  .panel:not(.is-collapsed){
+    position:fixed!important;
+    z-index:1450!important;
+    top:56px!important;
+    left:0!important;
+    right:auto!important;
+    bottom:0!important;
+    width:min(38vw,320px)!important;
+    min-width:290px!important;
+    height:calc(100dvh - 56px)!important;
+    max-height:calc(100dvh - 56px)!important;
+    margin:0!important;
+    transform:none!important;
+    translate:none!important;
+    overflow:hidden!important;
+    border:0!important;
+    border-right:1px solid #c9c1b3!important;
+    box-shadow:12px 0 30px rgba(0,0,0,.34)!important;
+  }
+
+  .panel:not(.is-collapsed) .panel-toggle{
+    position:absolute!important;
+    z-index:20!important;
+    top:0!important;
+    right:0!important;
+    left:auto!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    width:48px!important;
+    height:48px!important;
+    margin:0!important;
+    padding:0!important;
+    transform:none!important;
+    border:0!important;
+    border-radius:0!important;
+    background:#760b0b!important;
+    color:#fff!important;
+  }
+
+  .panel:not(.is-collapsed) .header{
+    padding:12px 58px 10px 16px!important;
+  }
+
+  .panel:not(.is-collapsed) .header h1{
+    margin:0 0 7px!important;
+    font-size:18px!important;
+    line-height:1.02!important;
+  }
+
+  .panel:not(.is-collapsed) .header p{
+    margin:0!important;
+    font-size:9px!important;
+    line-height:1.3!important;
+  }
+
+  .panel:not(.is-collapsed) .tabs{
+    display:grid!important;
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  }
+
+  .panel:not(.is-collapsed) .tab{
+    min-height:36px!important;
+    padding:6px 2px!important;
+    font-size:7px!important;
+    line-height:1.1!important;
+    white-space:normal!important;
+  }
+
+  .panel:not(.is-collapsed) .view{
+    min-height:0!important;
+    overflow-y:auto!important;
+    -webkit-overflow-scrolling:touch!important;
+    padding:11px 15px calc(18px + env(safe-area-inset-bottom))!important;
+  }
+
+  /* Compact RAD button */
+  .radiation-guide{
+    position:fixed!important;
+    z-index:1350!important;
+    top:64px!important;
+    right:7px!important;
+    margin:0!important;
+  }
+
+  .radiation-guide-button,
+  .radiation-guide-button[aria-expanded="false"]:not(:hover){
+    width:45px!important;
+    min-width:38px!important;
+    height:38px!important;
+    padding:3px!important;
+    margin-top: -10px !important;
+  }
+
+  .radiation-guide-icon{
+    width:29px!important;
+    height:29px!important;
+    min-width:29px!important;
+  }
+
+  /* Compact bottom-right controls */
+  .leaflet-bottom.leaflet-right{
+    right:7px!important;
+    bottom:7px!important;
+    margin:0!important;
+  }
+
+  .leaflet-bottom.leaflet-right .leaflet-bar a,
+  .leaflet-bottom.leaflet-right .leaflet-bar button,
+  .leaflet-bottom.leaflet-right .address-search-button,
+  .leaflet-bottom.leaflet-right .leaflet-control-layers-toggle{
+    width:36px!important;
+    min-width:36px!important;
+    height:36px!important;
+    line-height:36px!important;
+  }
+
+  .leaflet-bottom.leaflet-right .leaflet-control-zoom a{
+    font-size:21px!important;
+  }
+}
+
+/* =========================================================
+   LANDSCAPE PHONE — SAFE MAP FRAME
+   ========================================================= */
+@media (orientation:landscape) and (max-height:650px){
+
+  :root{
+    --landscape-left: max(44px, env(safe-area-inset-left));
+    --landscape-right: max(44px, env(safe-area-inset-right));
+  }
+
+  html,
+  body{
+    margin:0!important;
+    background:#050505!important;
+    overflow:hidden!important;
+  }
+
+  /* The map stops before both black phone-edge areas */
+  #map,
+  #map.leaflet-container{
+    position:fixed!important;
+    top:0!important;
+    bottom:0!important;
+    left:var(--landscape-left)!important;
+    right:var(--landscape-right)!important;
+    width:auto!important;
+    max-width:none!important;
+    height:100vh!important;
+    height:100dvh!important;
+    overflow:hidden!important;
+  }
+
+  /* MENU aligns with the map’s left edge */
+  body:not(.site-page) .global-menu-button--map{
+    left:var(--landscape-left)!important;
+  }
+
+  /* Title fills the map frame beside MENU */
+  .leaflet-top.leaflet-right{
+    left:calc(var(--landscape-left) + 64px)!important;
+    right:var(--landscape-right)!important;
+    width:auto!important;
+  }
+
+  /* Information panel and arrow align with the map */
+  .panel:not(.is-collapsed),
+  .panel.is-collapsed,
+  .panel.is-collapsed .panel-toggle{
+    left:var(--landscape-left)!important;
+  }
+
+  /* Right-side map controls stay inside the map frame */
+  .radiation-guide{
+    right:calc(var(--landscape-right) + 7px)!important;
+  }
+
+  .leaflet-bottom.leaflet-right{}
+}
+
+/* LANDSCAPE PHONE — SAFE MAP FRAME */
+@media (orientation:landscape) and (max-height:650px){
+
+  /* all your current landscape alignment rules */
+
+  .leaflet-bottom.leaflet-right{
+    height: auto;
+    }
+  }
+
+/* Put the new black-edge code directly here */
+@media (orientation:landscape) and (max-height:650px){
+
+  body::before,
+  body::after{
+    content:"";
+    position:fixed;
+    z-index:10000;
+    top:0;
+    bottom:0;
+    background:#050505;
+    pointer-events:none;
+  }
+
+  body::before{
+    left:0;
+    width:max(44px, env(safe-area-inset-left));
+  }
+
+  body::after{
+    right:0;
+    width:max(44px, env(safe-area-inset-right));
+  }
+}
+
+/* Landscape RAD legend — visible close button */
+@media (orientation:landscape) and (max-height:650px){
+
+  .radiation-guide-mobile-header{
+    position:sticky!important;
+    z-index:10!important;
+    top:0!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    min-height:42px!important;
+    margin:-1px -1px 12px!important;
+    padding:0 6px 0 14px!important;
+    background:#050505!important;
+    color:#f1ede3!important;
+    border-bottom:1px solid #c9c1b3!important;
+    font-size:10px!important;
+    font-weight:700!important;
+    letter-spacing:.09em!important;
+  }
+  /* RAD Key Legend: black close button with white X */
+.radiation-guide-close{
+  background:#050505!important;
+  color:#ffffff!important;
+  border:1px solid #050505!important;
+  box-shadow:none!important;
+  font-size: 23px;
+}
+
+.radiation-guide-close:hover,
+.radiation-guide-close:focus-visible{
+  background:#f1ede3!important;
+  color:#050505!important;
+}
+}
+
+/* Landscape: clean open-panel < symbol only */
+@media (orientation:landscape) and (max-height:650px){
+
+  /* Remove every leftover line, X, circle, and pseudo-element */
+  .panel:not(.is-collapsed) .panel-toggle::before,
+  .panel:not(.is-collapsed) .panel-toggle::after,
+  .panel:not(.is-collapsed) .panel-toggle-icon::after{
+    content:none!important;
+    display:none!important;
+    border:0!important;
+  }
+
+  .panel:not(.is-collapsed) .panel-toggle-icon{
+    position:static!important;
+    display:block!important;
+    width:auto!important;
+    min-width:0!important;
+    height:auto!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:0!important;
+    border:0!important;
+    border-top:0!important;
+    border-right:0!important;
+    border-bottom:0!important;
+    border-left:0!important;
+    background:none!important;
+    transform:none!important;
+  }
+
+  .panel:not(.is-collapsed) .panel-toggle-icon::before{
+    content:"<"!important;
+    position:static!important;
+    display:block!important;
+    width:auto!important;
+    height:auto!important;
+    margin:0!important;
+    padding:0!important;
+    border:0!important;
+    background:none!important;
+    color:#fff!important;
+    font-family:Arial,sans-serif!important;
+    font-size:42px!important;
+    font-weight:300!important;
+    line-height:.9!important;
+    transform:none!important;
+  }
+}
+
+/* Smaller map controls — landscape phones only */
+@media (orientation:landscape) and (max-height:650px){
+
+  /* Search, layers, location, and zoom only */
+  .leaflet-bottom.leaflet-right .leaflet-bar a,
+  .leaflet-bottom.leaflet-right .leaflet-bar button,
+  .leaflet-bottom.leaflet-right .address-search-button,
+  .leaflet-bottom.leaflet-right .leaflet-control-layers-toggle{
+    width:30px!important;
+    min-width:30px!important;
+    height:30px!important;
+    line-height:30px!important;
+  }
+
+  .leaflet-bottom.leaflet-right .leaflet-control-zoom a{
+    font-size:18px!important;
+  }
+
+  .leaflet-bottom.leaflet-right .address-search-button,
+  .leaflet-bottom.leaflet-right .leaflet-control-layers-toggle{
+    background-size:16px 16px!important;
+  }
+}
+
+/* Center Search and Layers panels in landscape only */
+@media (orientation:landscape) and (max-height:650px){
+
+  /* Address Search opens centered */
+  .address-search-panel.open{
+    position:fixed!important;
+    z-index:1600!important;
+    top:64px!important;
+    left:-800%!important;
+    right:auto!important;
+    bottom:auto!important;
+    transform:translateX(-50%)!important;
+    margin:0!important;
+    width:min(50vw,400px)!important;
+    max-width:calc(100vw - 140px)!important;
+    max-height:calc(100dvh - 76px)!important;
+    box-sizing:border-box!important;
+    overflow:auto!important;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  /*
+    Keep the Layers control itself in the right-side stack.
+    Do not center or move this outer container.
+  */
+  .leaflet-control-layers-expanded{
+    position:relative!important;
+    width:30px!important;
+    min-width:30px!important;
+    height:30px!important;
+    min-height:30px!important;
+    margin:0!important;
+    padding:0!important;
+    overflow:visible!important;
+    background:transparent!important;
+    box-shadow:none!important;
+  }
+
+  /* Leaflet normally hides this icon when expanded—keep it visible */
+  .leaflet-control-layers-expanded .leaflet-control-layers-toggle{
+    display:block!important;
+    position:relative!important;
+    z-index:1602!important;
+    width:30px!important;
+    min-width:30px!important;
+    height:30px!important;
+    margin:0!important;
+    background-size:16px 16px!important;
+  }
+
+  /* Center only the Layers list */
+  .leaflet-control-layers-expanded .leaflet-control-layers-list{
+    display:block!important;
+    position:fixed!important;
+    z-index:1601!important;
+    top:64px!important;
+    left:50%!important;
+    right:auto!important;
+    bottom:auto!important;
+    transform:translateX(-50%)!important;
+    margin:0!important;
+    padding:12px!important;
+    width:min(50vw,400px)!important;
+    max-width:calc(100vw - 140px)!important;
+    max-height:calc(100dvh - 76px)!important;
+    box-sizing:border-box!important;
+    overflow:auto!important;
+    -webkit-overflow-scrolling:touch;
+    background:#f1ede3!important;
+    color:#050505!important;
+    border:1px solid #c9c1b3!important;
+    font-size:10px!important;
+  }
+}
+
+/* Landscape: clean collapsed left-panel button */
+@media (orientation:landscape) and (max-height:650px){
+
+  /* Remove the visible collapsed-panel wrapper */
+  .panel.is-collapsed{
+    position:fixed!important;
+    top:66px!important;
+    left:var(--landscape-left)!important;
+
+    width:0!important;
+    min-width:0!important;
+    max-width:0!important;
+    height:0!important;
+    min-height:0!important;
+    max-height:0!important;
+
+    margin:0!important;
+    padding:0!important;
+    border:0!important;
+    outline:0!important;
+    background:transparent!important;
+    box-shadow:none!important;
+    overflow:visible!important;
+  }
+
+  /* Keep only the red square button */
+  .panel.is-collapsed .panel-toggle{
+    position:fixed!important;
+    top:66px!important;
+    left:var(--landscape-left)!important;
+
+    width:52px!important;
+    min-width:52px!important;
+    height:52px!important;
+
+    margin:0!important;
+    padding:0!important;
+    border:0!important;
+    outline:0!important;
+    border-radius:0!important;
+    background:#7d0600!important;
+    box-shadow:none!important;
+  }
+
+  /* Show only > */
+  .panel.is-collapsed .panel-toggle::before,
+  .panel.is-collapsed .panel-toggle::after,
+  .panel.is-collapsed .panel-toggle-icon::after{
+    content:none!important;
+    display:none!important;
+  }
+
+  .panel.is-collapsed .panel-toggle-icon{
+    width:auto!important;
+    height:auto!important;
+    min-width:0!important;
+    border:0!important;
+    background:none!important;
+    transform:none!important;
+  }
+
+  .panel.is-collapsed .panel-toggle-icon::before{
+    content:">"!important;
+    display:block!important;
+    color:#fff!important;
+    font-family:Arial,sans-serif!important;
+    font-size:42px!important;
+    font-weight:300!important;
+    transform:none!important;
+  }
+}
+
+/* Landscape: clean collapsed > symbol */
+@media (orientation:landscape) and (max-height:650px){
+
+  .panel.is-collapsed .panel-toggle-icon::before{
+    content:">"!important;
+    display:block!important;
+    position:static!important;
+
+    width:48px!important;
+    min-width:0!important;
+    height:48px!important;
+    min-height:0!important;
+
+    margin:0!important;
+    padding:0!important;
+    border:0!important;
+    background:none!important;
+    box-shadow:none!important;
+
+    color:#fff!important;
+    font-family:Arial,sans-serif!important;
+    font-size:42px!important;
+    font-weight:300!important;
+
+    transform:none!important;
+  }
+}
+
+/* Landscape: align the collapsed > button with the map’s left edge */
+@media (orientation:landscape) and (max-height:650px){
+
+  .panel.is-collapsed{
+    left:var(--landscape-left)!important;
+    top:48px!important;
+  }
+
+  .panel.is-collapsed .panel-toggle{
+    position:absolute!important;
+    left:0!important;
+    top:0!important;
+    margin:0!important;
+    transform:none!important;
+    translate:none!important;
+  }
+}
+
+/* Landscape: keep Layers icon in its original position when open */
+@media (orientation:landscape) and (max-height:650px){
+
+  .leaflet-control-layers-expanded{
+    position:relative!important;
+    top:auto!important;
+    left:auto!important;
+    right:auto!important;
+    bottom:auto!important;
+    transform:none!important;
+    margin:0!important;
+
+    width:30px!important;
+    min-width:30px!important;
+    height:30px!important;
+    min-height:30px!important;
+
+    padding:0!important;
+    overflow:visible!important;
+  }
+
+  .leaflet-control-layers-expanded .leaflet-control-layers-toggle{
+    display:block!important;
+    position:absolute!important;
+    z-index:20!important;
+    top:0!important;
+    left:0!important;
+
+    width:30px!important;
+    min-width:30px!important;
+    height:30px!important;
+    margin:0!important;
+
+    background-size:16px 16px!important;
+  }
+
+}
+
+/* Landscape: make the open Layers/Survey panel 80px narrower */
+@media (orientation:landscape) and (max-height:650px){
+
+  .leaflet-control-layers-expanded .leaflet-control-layers-list{
+        width: 240px !important;
+        max-width: calc(100vw - 140px) !important;
+        margin-left: -200px !important;
+        margin-top: -165px !important;
+        height: 250px !important;
+        padding:44px 12px 12px!important;
+    }
+}
+
+/* Mobile Safari: keep the page fitted to the visible screen */
+@media (max-width:700px){
+
+  html,
+  body{
+    width:100%!important;
+    height:100dvh!important;
+    min-height:100dvh!important;
+    overflow:hidden!important;
+  }
+
+  #map{
+    width:100%!important;
+    height:100dvh!important;
+    min-height:100dvh!important;
+  }
+  
+  .map-credit {visibility: hidden !important;}
+}
+
+/* iPhone/iOS landscape: push the global menu inward */
+@supports (-webkit-touch-callout:none){
+
+  @media (orientation:landscape) and (max-height:650px){
+
+    .global-menu-panel{
+      padding:74px 74px 52px!important;
+      box-sizing:border-box!important;
+    }
+  }
+}
+
+/* Mobile: prevent browser zoom when Address Search is focused */
+@media (max-width:700px),
+       (orientation:landscape) and (max-width:1000px) and (max-height:650px){
+
+  .address-search-panel input,
+  .address-search-input{
+    font-size:16px!important;
+    line-height:1.25!important;
+  }
+}

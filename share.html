@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Share Your Story | Greetings from Niagara</title>
+<meta name="description" content="Submit a written, photographic, audio, or video story.">
+<link rel="stylesheet" href="site.css?v=1.4">
+<link rel="stylesheet" href="animations.css?v=1.216">
+</head>
+<body class="site-page">
+
+<button class="global-menu-button" type="button" aria-expanded="false" aria-controls="globalSiteMenu">
+  <span class="global-menu-lines" aria-hidden="true"></span>
+  <span>MENU</span>
+</button>
+<div id="globalSiteMenu" class="global-menu" hidden>
+  <div class="global-menu-backdrop" data-close-menu></div>
+  <div class="global-menu-panel" role="dialog" aria-modal="true" aria-label="Website menu">
+    <button class="global-menu-close" type="button" aria-label="Close menu" data-close-menu>×</button>
+    <p class="global-menu-kicker">GREETINGS FROM NIAGARA</p>
+    <nav class="global-menu-nav" aria-label="Main navigation"><a href="index.html">Interactive Map</a>
+<a href="about.html">About</a>
+<a href="history.html">History</a>
+<a href="voices.html">Voices from Niagara</a>
+<a class="active" href="share.html">Share Your Story</a>
+<a href="archive.html">The Evidence</a>
+<a href="necra.html">Survey Updates &amp; Resources</a>      
+<a href="reca-eeoicpa.html">RECA &amp; EEOICPA</a>
+<a href="exhibitions.html">Exhibitions</a>
+<a href="contact.html">Contact</a></nav>
+
+    <div class="global-menu-social" aria-label="Social media and sharing">
+      <p class="global-menu-social-title">FOLLOW / SHARE</p>
+      <div class="global-menu-social-links">
+        <a href="https://www.instagram.com/natalia.neuhaus/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <button type="button" data-share-action="facebook">Facebook</button>
+        <button type="button" data-share-action="x">X</button>
+        <button type="button" data-share-action="copy">Copy link</button>
+        <button type="button" data-share-action="email">Email</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<header class="site-header">
+  <a class="site-wordmark" href="index.html">GREETINGS FROM NIAGARA</a>
+</header>
+<main class="site-main">
+
+<section class="page-intro">
+  <p class="site-eyebrow">CONTRIBUTE TO THE ARCHIVE</p>
+  <h1>Share your story</h1>
+  <p>Your experience is part of this history. You may write, upload photographs or documents, record audio, or record video. You decide whether your identity remains private or appears publicly with your story.</p>
+</section>
+<section class="content-wrap">
+  <form id="storyForm" class="story-form" novalidate>
+    <section class="form-section">
+      <h2>About you</h2>
+      <p>Only share what feels comfortable. An exact address is not requested.</p>
+      <div class="form-grid">
+        <div class="field"><label for="name">Your name</label><input id="name" name="name" autocomplete="name" placeholder="Your name or initials" required aria-describedby="nameHelp"><span id="nameHelp" class="field-help">Required for the private archive. Your name will not appear publicly unless you choose that option below.</span></div>
+        <div class="field"><label for="email">Email or phone — optional</label><input id="email" name="email" autocomplete="email" placeholder="Only if you want Natalia to contact you"></div>
+        <div class="field"><label for="location">General location — optional</label><input id="location" name="location" placeholder="Niagara Falls, Lewiston, Lockport, Tonawanda, Buffalo…"></div>
+        <div class="field"><label for="connection">Connection to the area</label><select id="connection" name="connection"><option value="">Choose one</option><option>Resident</option><option>Former resident</option><option>Worker or former worker</option><option>Student or school community</option><option>Family member</option><option>Witness or researcher</option><option>Other</option></select></div>
+        <div class="field field--full"><label for="years">Years connected to the area — optional</label><input id="years" name="years" placeholder="For example: 1968–1984, or since 2002"></div>
+      </div>
+    </section>
+
+    <section class="form-section">
+      <h2>How would you like to share?</h2>
+      <p>Choose a method. You can also use more than one.</p>
+      <div class="share-methods">
+        <button class="share-method-button active" type="button" data-method="write">Write</button>
+        <button class="share-method-button" type="button" data-method="upload">Upload files</button>
+        <button class="share-method-button" type="button" data-method="audio">Record audio</button>
+        <button class="share-method-button" type="button" data-method="video">Record video</button>
+      </div>
+      <p id="recordingAvailabilityMessage" class="method-availability" aria-live="polite" hidden></p>
+
+      <div class="share-panel" data-panel="write">
+        <div class="form-grid">
+          <div class="field field--full"><label for="storyTitle">Story title — optional</label><input id="storyTitle" name="story_title" placeholder="A short title or subject"></div>
+          <div class="field field--full"><label for="story">Tell your story</label><textarea id="story" name="story" placeholder="What happened? What did you see, experience, hear, or learn?"></textarea></div>
+        </div>
+      </div>
+
+      <div class="share-panel" data-panel="upload" hidden>
+        <div class="field"><label for="files">Upload photographs, documents, audio, or video</label><input id="files" name="files" type="file" multiple accept="image/*,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.csv,.rtf,audio/*,video/*" aria-describedby="uploadHelp fileSelectionSummary"><span id="uploadHelp" class="field-help">Up to 10 files. Each file may be up to 10 MB, with a combined submission limit of 12 MB.</span><span id="fileSelectionSummary" class="field-help file-selection-summary" aria-live="polite">No files selected.</span></div>
+      </div>
+
+      <div class="share-panel recorder" data-panel="audio" hidden>
+        <strong>Record audio testimony</strong>
+        <p class="field-help">Your browser will ask for microphone permission. You may record for up to 10 minutes, then review, delete, or record again before submitting.</p>
+        <div id="audioRecordingStatus" class="recording-status" role="status" aria-live="assertive" hidden><span class="recording-dot" aria-hidden="true"></span><strong>RECORDING</strong><span data-recording-time>00:00 / 10:00</span></div>
+        <div class="recorder-controls"><button id="startAudio" type="button">Start recording</button><button id="stopAudio" type="button" disabled>Stop</button><button id="clearAudio" type="button" disabled>Delete recording</button></div>
+        <div id="audioMessage" class="field-help recorder-message">No recording saved.</div>
+        <audio id="audioPreview" controls hidden></audio>
+      </div>
+
+      <div class="share-panel recorder" data-panel="video" hidden>
+        <strong>Record video testimony</strong>
+        <p class="field-help">Your browser will ask for camera and microphone permission. You may record for up to 3 minutes. A live camera preview and recording timer will remain visible while recording.</p>
+        <div id="videoRecordingStatus" class="recording-status" role="status" aria-live="assertive" hidden><span class="recording-dot" aria-hidden="true"></span><strong>RECORDING</strong><span data-recording-time>00:00 / 03:00</span></div>
+        <div class="recorder-controls"><button id="startVideo" type="button">Start recording</button><button id="stopVideo" type="button" disabled>Stop</button><button id="clearVideo" type="button" disabled>Delete recording</button></div>
+        <div id="videoMessage" class="field-help recorder-message">No recording saved.</div>
+        <video id="videoPreview" controls playsinline hidden></video>
+      </div>
+    </section>
+
+    <section class="form-section">
+      <h2>Permission and privacy</h2>
+      <p>You control how your identity may appear publicly.</p>
+
+      <div class="permission-list">
+        <label class="permission">
+          <input type="radio" name="publication_identity" value="private_identity" required>
+          <span>Keep my identity private wherever my submission is shared or published.</span>
+        </label>
+
+        <label class="permission">
+          <input type="radio" name="publication_identity" value="public_identity" required>
+          <span>Use my name wherever my submission is shared or published.</span>
+        </label>
+      </div>
+
+      <p class="form-note" style="margin-top:18px;">
+        Your contact information will remain private and will only be used to follow
+        up about your submission.
+      </p>
+    </section>
+
+    <section class="form-section">
+      <h2>Sharing with elected officials</h2>
+      <p>May we share your submission with elected officials as part of the effort to seek recognition and compensation for affected Niagara residents, workers, and families?</p>
+
+      <div class="permission-list">
+        <label class="permission">
+          <input type="radio" name="officials_permission" value="yes" required>
+          <span>Yes, you may share my submission with elected officials.</span>
+        </label>
+
+        <label class="permission">
+          <input type="radio" name="officials_permission" value="no" required>
+          <span>No, keep my submission within the Greetings from Niagara project.</span>
+        </label>
+      </div>
+    </section>
+
+    <div class="form-actions">
+      <button class="button-link" type="submit">Send story</button>
+      <div class="submission-progress" id="submissionProgress" aria-hidden="true" hidden><span id="submissionProgressBar"></span></div>
+      <div id="formStatus" class="form-status" aria-live="polite"></div>
+    </div>
+  </form>
+</section>
+
+</main>
+<footer class="site-footer">
+  <div>
+    <strong>Greetings from Niagara</strong>
+    <p>An ongoing archive dedicated to truth, accountability, and justice for Niagara.</p>
+  </div>
+  <p><a href="mailto:GreetingsFromNiagara@gmail.com">GreetingsFromNiagara@gmail.com</a></p>
+</footer>
+<script src="site.js?v=1.1"></script>
+<script src="share.js?v=2.0"></script>
+</body>
+</html>
