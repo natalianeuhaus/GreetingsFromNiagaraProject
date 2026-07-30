@@ -1361,6 +1361,7 @@ html body .site-brand-control:visited {
     left:-800%!important;
     right:auto!important;
     bottom:auto!important;
+    padding-top: 25px !important;
     transform:translateX(-50%)!important;
     margin:0!important;
     width:min(50vw,400px)!important;
