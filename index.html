@@ -1935,8 +1935,11 @@ function setLayerControlOpen(open){
   );
 
   if(addressSearchControl){
-    addressSearchControl.style.display = open ? "none" : "";
-  }
+  const isPortrait = window.matchMedia("(orientation: portrait)").matches;
+
+  addressSearchControl.style.display =
+    open && isPortrait ? "none" : "";
+}
 }
 L.DomEvent.off(layerToggle,"click");
 L.DomEvent.on(layerToggle,"click",function(e){
