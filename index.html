@@ -1927,7 +1927,7 @@ layerCloseButton.type="button";
 layerCloseButton.className="layer-control-close";
 layerCloseButton.setAttribute("aria-label","Close map layers");
 layerCloseButton.innerHTML="&times;";
-layerControl._container.appendChild(layerCloseButton);
+layerControl._form.appendChild(layerCloseButton);
 L.DomEvent.disableClickPropagation(layerCloseButton);
 L.DomEvent.on(layerCloseButton,"click",function(e){
  L.DomEvent.preventDefault(e);
