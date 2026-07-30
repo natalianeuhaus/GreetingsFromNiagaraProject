@@ -1400,7 +1400,7 @@ a:active,
 /* Keep the Layers X inside the beige Layers panel */
 .leaflet-control-layers-expanded .leaflet-control-layers-list{
   position:relative;
-  padding-top:40px;
+  padding-top:10px;
 }
 
 .leaflet-control-layers-expanded{
