@@ -1923,8 +1923,20 @@ layerToggle.setAttribute("role","button");
 layerToggle.setAttribute("aria-label","Open map layers");
 layerToggle.setAttribute("aria-expanded","false");
 function setLayerControlOpen(open){
- open ? layerControl.expand() : layerControl.collapse();
- layerToggle.setAttribute("aria-expanded",open?"true":"false");
+  open ? layerControl.expand() : layerControl.collapse();
+
+  layerToggle.setAttribute(
+    "aria-expanded",
+    open ? "true" : "false"
+  );
+
+  const addressSearchControl = document.querySelector(
+    ".address-search-control"
+  );
+
+  if(addressSearchControl){
+    addressSearchControl.style.display = open ? "none" : "";
+  }
 }
 L.DomEvent.off(layerToggle,"click");
 L.DomEvent.on(layerToggle,"click",function(e){
