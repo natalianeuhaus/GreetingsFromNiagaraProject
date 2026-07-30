@@ -1903,7 +1903,21 @@ if(layerControl && layerControl._container){
     {childList:true,subtree:true,attributes:true}
   );
 }
+/* Add RAD SURVEYS + HOTSPOTS heading */
+const radiologicalLayerList = layerControl
+  .getContainer()
+  .querySelector(".leaflet-control-layers-overlays");
 
+if (
+  radiologicalLayerList &&
+  !layerControl.getContainer().querySelector(".rad-layers-heading")
+) {
+  const radHeading = document.createElement("div");
+  radHeading.className = "layer-section-heading rad-layers-heading";
+  radHeading.textContent = "RAD SURVEYS + HOTSPOTS";
+
+  radiologicalLayerList.before(radHeading);
+}
 const layerToggle=layerControl._layersLink;
 layerToggle.setAttribute("role","button");
 layerToggle.setAttribute("aria-label","Open map layers");
