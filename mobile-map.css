@@ -1671,3 +1671,38 @@ html body .site-brand-control:visited {
     box-shadow:0 5px 16px rgba(0,0,0,.20)!important;
   }
 }
+
+/* Portrait phones: Layers X flush to the panel’s top-right corner */
+@media (max-width:700px) and (orientation:portrait){
+
+  .leaflet-control-layers-expanded .leaflet-control-layers-list{
+    position:relative!important;
+  }
+
+  .leaflet-control-layers-expanded .layer-control-close{
+    display:flex!important;
+    position:absolute!important;
+    z-index:30!important;
+
+    top:0!important;
+    right:0!important;
+    left:auto!important;
+    bottom:auto!important;
+
+    width:48px!important;
+    height:48px!important;
+    margin:0!important;
+    padding:0!important;
+
+    align-items:center!important;
+    justify-content:center!important;
+
+    border:0!important;
+    background:#050505!important;
+    color:#ffffff!important;
+  }
+
+  .leaflet-control-layers-expanded .layer-control-heading{
+    padding-right:56px!important;
+  }
+}
