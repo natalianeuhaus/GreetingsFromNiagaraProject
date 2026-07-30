@@ -1918,11 +1918,13 @@ if (
 
   radiologicalLayerList.before(radHeading);
 }
-const layerToggle=layerControl._layersLink;
-layerToggle.setAttribute("role","button");
-layerToggle.setAttribute("aria-label","Open map layers");
-layerToggle.setAttribute("aria-expanded","false");
-function setLayerControlOpen(open){
+const layerToggle = layerControl._layersLink;
+
+layerToggle.setAttribute("role", "button");
+layerToggle.setAttribute("aria-label", "Open map layers");
+layerToggle.setAttribute("aria-expanded", "false");
+
+function setLayerControlOpen(open) {
   open ? layerControl.expand() : layerControl.collapse();
 
   layerToggle.setAttribute(
@@ -1934,12 +1936,18 @@ function setLayerControlOpen(open){
     ".address-search-control"
   );
 
-  if(addressSearchControl){
-  const isPortrait = window.matchMedia("(orientation: portrait)").matches;
+  if (addressSearchControl) {
+    const isPortrait = window.matchMedia(
+      "(orientation: portrait)"
+    ).matches;
 
-  addressSearchControl.style.display =
-    open && isPortrait ? "none" : "";
-}
+    const isDesktop = window.matchMedia(
+      "(hover: hover) and (pointer: fine)"
+    ).matches;
+
+    addressSearchControl.style.display =
+      open && (isPortrait || isDesktop) ? "none" : "";
+  }
 }
 L.DomEvent.off(layerToggle,"click");
 L.DomEvent.on(layerToggle,"click",function(e){
