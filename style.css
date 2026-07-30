@@ -1395,3 +1395,13 @@ a:active,
   -webkit-overflow-scrolling: touch;
   touch-action: pan-y;
 }
+
+/* Keep the Layers X inside the beige Layers panel */
+.leaflet-control-layers-expanded .leaflet-control-layers-list{
+  position:relative;
+  padding-top:40px;
+}
+
+.leaflet-control-layers-expanded{
+  padding-top:0;
+}
