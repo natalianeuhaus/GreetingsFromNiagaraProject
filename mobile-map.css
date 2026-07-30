@@ -430,6 +430,10 @@ html body .site-brand-control:visited {
     font-size:11px!important;
   }
 
+  .address-search-panel.open { 
+       padding-top: 20px !important;
+  }   
+
   .leaflet-popup-content-wrapper{
     max-width:calc(100vw - 32px)!important;
     max-height:calc(100dvh - 150px)!important;
