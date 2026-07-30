@@ -320,6 +320,7 @@ a:active,
   margin:0 0 8px;
   padding:0 0 7px;
   border-bottom:1px solid #c9c3b7;
+  border-top:1px solid #c9c3b7;
   color:#111 !important;
   background:transparent;
   font:700 13px/1.2 Arial, sans-serif;
@@ -1312,7 +1313,7 @@ a:active,
   stroke:var(--ink)!important;
 }
 .leaflet-bottom.leaflet-right .leaflet-control-layers-expanded{
-  padding:55px 15px 12px!important;
+  padding:45px 15px 12px!important;
   border:1px solid var(--line)!important;
   background:rgba(241,237,227,.98)!important;
   color:var(--ink)!important;
