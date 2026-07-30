@@ -1312,7 +1312,7 @@ a:active,
   stroke:var(--ink)!important;
 }
 .leaflet-bottom.leaflet-right .leaflet-control-layers-expanded{
-  padding:45px 15px 12px!important;
+  padding:30px 15px 12px!important;
   border:1px solid var(--line)!important;
   background:rgba(241,237,227,.98)!important;
   color:var(--ink)!important;
