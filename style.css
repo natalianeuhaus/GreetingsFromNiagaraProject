@@ -313,7 +313,20 @@ a:active,
    LAYERS PANEL HEADING
    ========================================================== */
 
-.layer-control-heading,
+.layer-control-heading {
+    display:block !important;
+  width:100%;
+  box-sizing:border-box;
+  margin:0 0 8px;
+  padding:0 0 7px;
+  border-bottom:1px solid #c9c3b7;
+  color:#111 !important;
+  background:transparent;
+  font:700 13px/1.2 Arial, sans-serif;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
 .rad-layers-heading {
   display:block !important;
   width:100%;
