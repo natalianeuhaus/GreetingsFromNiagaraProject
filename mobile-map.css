@@ -95,6 +95,8 @@ html body .site-brand-control:visited {
   opacity: 1 !important;
 }
   .site-brand-control {}
+
+  .tab {color:#262420 !important;}
   
   /* Open information drawer. */
   .panel:not(.is-collapsed){
