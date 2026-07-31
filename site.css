@@ -1790,9 +1790,9 @@ html{
   outline-offset:-4px;
 }
 
-/* RECA page photograph only */
-.reca-page .site-hero-art {
+/* RECA hero photograph */
+.reca-hero-art {
   background:
     linear-gradient(rgba(5,5,5,.28), rgba(5,5,5,.28)),
-    url("PUT-THE-RECA-PHOTO-URL-HERE") center / cover no-repeat;
+    url("ACTUAL-RECA-PHOTO-URL-HERE") center / cover no-repeat;
 }
