@@ -1711,3 +1711,16 @@ html body .site-brand-control:visited {
     padding-right:56px!important;
   }
 }
+
+/* 1985 Survey — Highlight on map link */
+.survey-highlight-link,
+.survey-highlight-link:visited {
+  color: #9e2b25 !important;
+  text-decoration-color: #9e2b25 !important;
+}
+
+.survey-highlight-link:hover,
+.survey-highlight-link:focus-visible,
+.survey-highlight-link:active {
+  color: #050505 !important;
+}
