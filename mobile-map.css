@@ -63,6 +63,8 @@
 
   .map-credit {opacity: 0!important;}
 
+  .viewbtn {color:#000!important;}
+
   body:not(.site-page) .global-menu-button--map > span:last-child{
     position:absolute!important;
     width:1px!important;
