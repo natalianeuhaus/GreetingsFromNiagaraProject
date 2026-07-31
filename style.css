@@ -146,8 +146,9 @@
     background:#181818;
     color:#fff;
     font-size:10px;
-    font-weight:100;
     cursor:pointer;
+   font-weight: 400 !important;
+    letter-spacing: 0.04em;
 }
 
 .process-map-button:hover{
