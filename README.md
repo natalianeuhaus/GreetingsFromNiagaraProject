@@ -13,7 +13,7 @@ This package expands the existing v209 interactive map into a multi-page static 
 - `contact.html`
 
 ## Shared files 
-- `site.css` — website and menu styling
+- `site.css` — website and menu styling 
 - `site.js` — slide-out navigation
 - `share.js` — story-method tabs and browser audio/video recording preview
 - `style.css` — original interactive-map styling
