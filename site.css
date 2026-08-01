@@ -1804,6 +1804,6 @@ html{
 
   html,
   body.site-page {
-    touch-action: pan-x pan-y !important;
+    touch-action:auto;
   }
 }
