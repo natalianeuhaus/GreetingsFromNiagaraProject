@@ -903,14 +903,29 @@ function positionProcessPopup(marker,config){
   },360);
 }
 
-// Give every clickable point symbol the same close-up behavior.
 function enableUniformSymbolZoom(marker){
-  if(!marker || marker._uniformSymbolZoom || !marker.getLatLng || !marker.getPopup || !marker.getPopup())return;
-  marker._uniformSymbolZoom=true;
-  marker.on("click",()=>{
+  if(
+    !marker ||
+    marker._uniformSymbolZoom ||
+    !marker.getLatLng ||
+    !marker.getPopup ||
+    !marker.getPopup()
+  ) return;
+
+  marker._uniformSymbolZoom = true;
+
+  marker.on("click", () => {
     map.closePopup();
-    focusVisible(marker.getLatLng(),16);
-    window.setTimeout(()=>positionProcessPopup(marker,null),520);
+
+    /* Zoom in to 16 when farther away,
+       but never zoom out when already closer. */
+    const targetZoom = Math.max(map.getZoom(), 16);
+
+    focusVisible(marker.getLatLng(), targetZoom);
+
+    window.setTimeout(() => {
+      positionProcessPopup(marker, null);
+    }, 520);
   });
 }
 
