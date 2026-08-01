@@ -903,8 +903,8 @@ function positionProcessPopup(marker,config){
   },360);
 }
 
-function enableUniformSymbolZoom(marker){
-  if(
+function enableUniformSymbolZoom(marker) {
+  if (
     !marker ||
     marker._uniformSymbolZoom ||
     !marker.getLatLng ||
@@ -917,15 +917,8 @@ function enableUniformSymbolZoom(marker){
   marker.on("click", () => {
     map.closePopup();
 
-    /* Zoom in to 16 when farther away,
-       but never zoom out when already closer. */
-    const targetZoom = Math.max(map.getZoom(), 16);
-
-    focusVisible(marker.getLatLng(), targetZoom);
-
-    window.setTimeout(() => {
-      positionProcessPopup(marker, null);
-    }, 520);
+    // Keep the current zoom and only reposition the popup.
+    positionProcessPopup(marker, null);
   });
 }
 
