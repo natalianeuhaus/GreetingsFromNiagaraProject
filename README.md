@@ -3,7 +3,7 @@
 This package expands the existing v209 interactive map into a multi-page static website.                
  
 ## Pages
-- `index.html` — interactive map  
+- `index.html` — interactive map   
 - `about.html`
 - `history.html` 
 - `voices.html`
