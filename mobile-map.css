@@ -1726,3 +1726,21 @@ html body .site-brand-control:visited {
 .survey-highlight-link:active {
   color: #050505 !important;
 }
+
+/* Portrait phones: keep gestures inside the map and panel */
+@media (max-width:700px) and (orientation:portrait) {
+
+  /* Leaflet handles map dragging and pinch zoom */
+  #map,
+  .leaflet-container {
+    touch-action: none !important;
+  }
+
+  /* The information panel may scroll vertically,
+     but must not zoom the entire webpage */
+  .panel:not(.is-collapsed),
+  .panel:not(.is-collapsed) .view {
+    touch-action: pan-y !important;
+    overscroll-behavior: contain;
+  }
+}
