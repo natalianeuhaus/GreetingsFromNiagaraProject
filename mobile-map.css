@@ -1744,3 +1744,23 @@ html body .site-brand-control:visited {
     overscroll-behavior: contain;
   }
 }
+
+/* Portrait phones:
+   prevent webpage pinch-zoom when touching Search or Layers */
+@media (max-width:700px) and (orientation:portrait) {
+
+  /* Closed Search and Layers buttons */
+  .address-search-button,
+  .leaflet-control-layers-toggle {
+    touch-action: none !important;
+  }
+
+  /* Open Search and Layers panels:
+     allow vertical scrolling, but not page pinch-zoom */
+  .address-search-panel.open,
+  .leaflet-control-layers-expanded
+  .leaflet-control-layers-list {
+    touch-action: pan-y !important;
+    overscroll-behavior: contain !important;
+  }
+}
