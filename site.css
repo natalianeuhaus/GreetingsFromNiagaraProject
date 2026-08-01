@@ -1796,3 +1796,14 @@ html{
     linear-gradient(rgba(5,5,5,.28), rgba(5,5,5,.28)),
     url("https://natalianeuhaus.com/wp-content/uploads/2026/07/Natalia_Neuhaus-2-scaled.jpg") center / cover no-repeat;
 }
+
+/* Mobile site pages:
+   allow normal scrolling but prevent extreme webpage pinch-zoom */
+@media (max-width:700px),
+       (orientation:landscape) and (max-width:1000px) and (max-height:650px) {
+
+  html,
+  body.site-page {
+    touch-action: pan-x pan-y !important;
+  }
+}
