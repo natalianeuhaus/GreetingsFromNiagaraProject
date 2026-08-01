@@ -1,6 +1,6 @@
 # Greetings from Niagara — Website Interface v210
 
-This package expands the existing v209 interactive map into a multi-page static website.                 
+This package expands the existing v209 interactive map into a multi-page static website.                  
  
 ## Pages
 - `index.html` — interactive map   
