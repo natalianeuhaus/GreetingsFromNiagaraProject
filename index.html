@@ -284,23 +284,23 @@ if (aircoPropertiesSite) {
   aircoPropertiesSite.properties.historical_context = "This marker represents the Airco Properties portion of the former Vanadium Corporation of America site. Airco retained the eastern 25 acres after SKW Alloys purchased the western 37 acres in 1979. This light-purple marker identifies that later Airco parcel, not the earlier Vanadium company or the separate Airco Alloys name used at the Highland Avenue plant.";
 }
 
-// v1.64: correct the Hyde Park / Military Road facility identities from
-// the 1955 Sanborn map, sheet 105. Globe Metallurgical remains separate.
-const nationalCarbonSite = sites.features.find((feature) =>
+// v1.66: correct the Witmer Road plant identity from the Sanborn map and
+// NYSDEC history of the former Vanadium Corporation of America property.
+const vanadiumWitmerPlant = sites.features.find((feature) =>
   feature.properties && feature.properties.map_id === "SITE-022"
 );
-if (nationalCarbonSite) {
-  Object.assign(nationalCarbonSite.properties, {
-    title:"National Carbon Company — Union Carbide",
-    company_group:"Union Carbide (Linde / Electromet)",
-    site_type:"Carbon-electrode manufacturing site",
-    imported_address:"4113 Military Road, Town of Niagara, New York",
-    review_status:"Historical identity verified against the 1955 Sanborn map, sheet 105. Marker position retained from the existing map point.",
-    historical_context:"The 1955 Sanborn map identifies this facility as the National Carbon Company, a division of Union Carbide and Carbon Corporation. The plant manufactured carbon electrodes. It was distinct from the Carborundum Company’s Globar Division shown separately on the same map.",
+if (vanadiumWitmerPlant) {
+  Object.assign(vanadiumWitmerPlant.properties, {
+    title:"Vanadium Corporation of America — Witmer Road Plant",
+    company_group:"Vanadium Corporation of America",
+    site_type:"Ferroalloy manufacturing site",
+    imported_address:"Witmer Road near Maryland Avenue, Town of Niagara, New York",
+    review_status:"Historical identity verified against the Sanborn map and the NYSDEC history of the former Vanadium property.",
+    historical_context:"Vanadium Corporation of America operated a ferroalloy manufacturing plant on the larger Witmer Road property from 1920 until 1964. The former Vanadium property was later divided into several parcels, including the SKW/CC Metals area, the Airco Properties landfill, and the eastern OU3 slag and remediation area.",
+    official_reference:"https://extapps.dec.ny.gov/data/DecDocs/932001C/Report.HW.932001C.1989-01-01.EngineeringInvestigationatInactiveHazardousWasteSitesPhase1Investigations.pdf",
     references:[],
-    reference_count:0
+    reference_count:1
   });
-  delete nationalCarbonSite.properties.official_reference;
 }
 
 const carborundumGlobarSite = sites.features.find((feature) =>
@@ -714,8 +714,8 @@ function factoryIdentity(p){
  if(title==="Airco Properties — Witmer Road Landfill"){
    return {current:"Closed Airco landfill under NYSDEC site management",address:"4201 Witmer Road, Town of Niagara, NY 14305"};
  }
- if(title==="National Carbon Company — Union Carbide"){
-   return {current:"Former National Carbon / Union Carbide industrial property",address:"4113 Military Road, Town of Niagara, NY"};
+ if(title==="Vanadium Corporation of America — Witmer Road Plant"){
+   return {current:"Former Vanadium property later divided among Airco, SKW/CC Metals, and eastern OU3 parcels",address:"Witmer Road near Maryland Avenue, Town of Niagara, NY 14305"};
  }
  if(title==="Carborundum Company — Globar Division"){
    return {current:"Former Carborundum Globar property",address:"3425 Hyde Park Boulevard, Town of Niagara, NY"};
