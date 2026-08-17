@@ -322,6 +322,26 @@ if (carborundumGlobarSite) {
   });
 }
 
+// v1.67: restore National Carbon as a separate point north of the Globar plant,
+// matching the two distinct factories shown on the 1955 Sanborn map, sheet 105.
+sites.features.push({
+  type:"Feature",
+  geometry:{type:"Point",coordinates:[-79.03285805464591,43.12030776631189]},
+  properties:{
+    object_id:"NATIONAL-CARBON-001",
+    title:"National Carbon Company — Union Carbide",
+    company_group:"Union Carbide (Linde / Electromet)",
+    site_type:"Carbon-electrode manufacturing site",
+    imported_address:"2001 College Avenue, Niagara Falls, New York",
+    review_status:"Historical identity and relative location verified against the 1955 Sanborn map, sheet 105. This point is north of the separate Globar Division plant.",
+    map_id:"SITE-NATIONAL-CARBON-001",
+    historical_context:"The 1955 Sanborn map identifies this upper factory as the National Carbon Company, a division of Union Carbide and Carbon Corporation. The plant manufactured carbon electrodes. It was separate from the Carborundum Company’s Globar Division immediately to the south.",
+    official_reference:"https://parkplanning.nps.gov/showFile.cfm?projectID=31850&sfid=129786",
+    references:[],
+    reference_count:1
+  }
+});
+
 // v1.65: restore Airco as a separate landfill marker at the official
 // NYSDEC Site 932001B location, rather than conflating it with National Carbon.
 sites.features.push({
@@ -716,6 +736,9 @@ function factoryIdentity(p){
  }
  if(title==="Vanadium Corporation of America — Witmer Road Plant"){
    return {current:"Former Vanadium property later divided among Airco, SKW/CC Metals, and eastern OU3 parcels",address:"Witmer Road near Maryland Avenue, Town of Niagara, NY 14305"};
+ }
+ if(title==="National Carbon Company — Union Carbide"){
+   return {current:"Former National Carbon / Union Carbide industrial property",address:"3505 Hyde Park Boulevard / 2001 College Avenue, Town of Niagara, NY 14305"};
  }
  if(title==="Carborundum Company — Globar Division"){
    return {current:"Former Carborundum Globar property",address:"3425 Hyde Park Boulevard, Town of Niagara, NY"};
