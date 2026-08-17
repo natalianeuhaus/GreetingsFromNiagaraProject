@@ -2032,20 +2032,39 @@ if(layerControl && layerControl._container){
     {childList:true,subtree:true,attributes:true}
   );
 }
-/* Add RAD SURVEYS + HOTSPOTS heading */
-const radiologicalLayerList = layerControl
-  .getContainer()
-  .querySelector(".leaflet-control-layers-overlays");
+/* Separate the radiological overlays into surveys and hotspot layers. */
+function ensureRadiologicalLayerHeadings(){
+  const radiologicalLayerList=layerControl
+    .getContainer()
+    .querySelector(".leaflet-control-layers-overlays");
+  if(!radiologicalLayerList)return;
 
-if (
-  radiologicalLayerList &&
-  !layerControl.getContainer().querySelector(".rad-layers-heading")
-) {
-  const radHeading = document.createElement("div");
-  radHeading.className = "layer-section-heading rad-layers-heading";
-  radHeading.textContent = "RAD SURVEYS + HOTSPOTS";
+  const labels=Array.from(radiologicalLayerList.children)
+    .filter(element=>element.tagName==="LABEL");
+  const surveyFirst=labels.find(label=>
+    label.textContent.includes("1978–1979 Aerial Radiological Survey")
+  );
+  const hotspotFirst=labels.find(label=>
+    label.textContent.includes("Documented Onsite Radiological Findings")
+  );
 
-  radiologicalLayerList.before(radHeading);
+  function insertHeading(text,className,beforeElement){
+    if(!beforeElement || radiologicalLayerList.querySelector("."+className))return;
+    const heading=document.createElement("div");
+    heading.className="layer-section-heading rad-layers-heading "+className;
+    heading.textContent=text;
+    radiologicalLayerList.insertBefore(heading,beforeElement);
+  }
+
+  insertHeading("RAD SURVEYS","rad-surveys-heading",surveyFirst);
+  insertHeading("HOTSPOTS","hotspot-layers-heading",hotspotFirst);
+}
+ensureRadiologicalLayerHeadings();
+if(layerControl && layerControl._container){
+  new MutationObserver(ensureRadiologicalLayerHeadings).observe(
+    layerControl._container,
+    {childList:true,subtree:true}
+  );
 }
 const layerToggle = layerControl._layersLink;
 
