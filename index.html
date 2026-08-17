@@ -424,7 +424,7 @@ const colors={
 };
 const esc=v=>String(v??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;");
 
-const map=L.map("map",{zoomControl:false,preferCanvas:true,zoomSnap:0.25,zoomDelta:1.25}).setView([43.1117,-79.0396],12.75);
+const map=L.map("map",{zoomControl:false,preferCanvas:true,zoomSnap:0.25,zoomDelta:1.25}).setView([43.1394,-79.0567],12.75);
 
 const informationPanel=document.getElementById("informationPanel");
 const informationPanelToggle=document.getElementById("informationPanelToggle");
@@ -2309,7 +2309,7 @@ const all=L.featureGroup([...siteMarkers,...factorySurveyMarkers,...brownfieldMa
 map.eachLayer(layer=>enableUniformSymbolZoomInLayer(layer));
 
 // Opening position restored to the same center and zoom as v0.48.
-const OPENING_CENTER = [43.1117, -79.0396];
+const OPENING_CENTER = [43.1394, -79.0567];
 const OPENING_ZOOM = 12.75;
 function applyOpeningView(){
   map.invalidateSize({pan:false});
