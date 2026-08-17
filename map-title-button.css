@@ -21,16 +21,10 @@ html body .site-brand-control:visited {
   transform: none !important;
   filter: none !important;
 
-  transition:
-    background-color 220ms ease,
-    color 220ms ease,
-    letter-spacing 260ms ease,
-    box-shadow 220ms ease,
-    opacity 220ms ease !important;
+  transition: opacity 220ms ease !important;
 }
 
-/* Hover: beige background, black text, wider spacing.
-   Keep the box shadow. */
+/* Hover: fade only; typography and dimensions remain fixed. */
 html body .site-brand-control:hover,
 html body .site-brand-control:focus-visible {
   background-color: #050505 !important;
@@ -38,9 +32,9 @@ html body .site-brand-control:focus-visible {
   color: #fff !important;
   -webkit-text-fill-color: #fff !important;
 
-  letter-spacing: 0.145em !important;
+  letter-spacing: 0.12em !important;
   box-shadow: none !important;
-  opacity: 1 !important;
+  opacity: 0.65 !important;
   transform: none !important;
   filter: none !important;
   font-weight: 700 !important;
