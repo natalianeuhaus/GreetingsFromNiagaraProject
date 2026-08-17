@@ -320,6 +320,40 @@ if (carborundumGlobarSite) {
   });
 }
 
+// v1.65: restore Airco as a separate landfill marker at the official
+// NYSDEC Site 932001B location, rather than conflating it with National Carbon.
+sites.features.push({
+  type:"Feature",
+  geometry:{type:"Point",coordinates:[-79.0255556,43.1241667]},
+  properties:{
+    object_id:"AIRCO-WITMER-001",
+    title:"Airco Properties — Witmer Road Landfill",
+    company_group:"Airco Properties",
+    site_type:"Waste or landfill site",
+    imported_address:"4201 Witmer Road, Town of Niagara, New York 14305",
+    review_status:"Marker positioned from the NYSDEC coordinates for Site No. 932001B. This landfill is separate from the National Carbon plant and the Globe Metallurgical facility.",
+    map_id:"SITE-AIRCO-WITMER-001",
+    historical_context:"This 25.142-acre landfill occupied the Airco parcel within the larger former Vanadium Corporation of America site. In 1964, the Air Reduction Company, parent of Airco Properties, purchased the remaining 62 acres of the former Vanadium site. SKW acquired the western 37 acres in 1979, while Airco retained the eastern 25.142-acre landfill. The landfill was capped and closed under an interim remedial measure in 2000. It is separate from the National Carbon plant and from the Pittsburgh Metallurgical / Airco Alloys / SKW / Globe Metallurgical plant at 3807 Highland Avenue.",
+    official_reference:"https://extapps.dec.ny.gov/data/DecDocs/932001B/Report.HW.932001B.2014-12-17.Approved%20Reclass%202%20to%204%20Package.pdf",
+    references:[
+      {source_id:"SRC-AIRCO-DEC-01",date:"2014",topic:"Airco Properties Inc. site reclassification package, site history, coordinates, and tax map",agency:"NYSDEC",url:"https://extapps.dec.ny.gov/data/DecDocs/932001B/Report.HW.932001B.2014-12-17.Approved%20Reclass%202%20to%204%20Package.pdf",review_status:"Government report"},
+      {source_id:"SRC-AIRCO-DEC-02",date:"2000",topic:"Airco Inc. Witmer Road Landfill closure wetland impacts",agency:"NYSDEC",url:"https://extapps.dec.ny.gov/data/DecDocs/932001B/Report.HW.932001B.2000-04-01.ClosureWetlandImpacts.pdf",review_status:"Government report"}
+    ],
+    reference_count:2
+  }
+});
+
+const correctedVanadiumHistorySite = sites.features.find((feature) =>
+  feature.properties && feature.properties.map_id === "SITE-033"
+);
+if (correctedVanadiumHistorySite) {
+  Object.assign(correctedVanadiumHistorySite.properties, {
+    historical_context:"Vanadium Corporation of America operated the larger Witmer Road site from 1920 until 1964. In 1964, the Air Reduction Company, parent of Airco Properties, purchased the remaining 62 acres. SKW acquired the western 37 acres in 1979, while Airco retained the eastern 25.142-acre landfill. This former Vanadium property is distinct from the Pittsburgh Metallurgical / Airco Alloys / SKW / Globe Metallurgical plant at 3807 Highland Avenue.",
+    review_status:"Site history corrected against the NYSDEC Airco Properties Site No. 932001B reclassification package.",
+    official_reference:"https://extapps.dec.ny.gov/data/DecDocs/932001B/Report.HW.932001B.2014-12-17.Approved%20Reclass%202%20to%204%20Package.pdf"
+  });
+}
+
 // v1.29: Tonawanda Coke remains a factory/site group. Its factory marker is deliberately
 // offset slightly northwest of the TENORM marker so both symbols remain visible and clickable.
 sites.features.push({
@@ -670,6 +704,9 @@ function factoryIdentity(p){
  }
  if(title==="Bell Factory"){
    return {current:"Former Bell industrial property; present use varies by parcel",address:p.imported_address||"Niagara Falls, NY"};
+ }
+ if(title==="Airco Properties — Witmer Road Landfill"){
+   return {current:"Closed Airco landfill under NYSDEC site management",address:"4201 Witmer Road, Town of Niagara, NY 14305"};
  }
  if(title==="National Carbon Company — Union Carbide"){
    return {current:"Former National Carbon / Union Carbide industrial property",address:"4113 Military Road, Town of Niagara, NY"};
