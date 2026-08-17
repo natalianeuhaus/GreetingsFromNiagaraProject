@@ -307,12 +307,14 @@ const carborundumGlobarSite = sites.features.find((feature) =>
   feature.properties && feature.properties.map_id === "SITE-023"
 );
 if (carborundumGlobarSite) {
+  // Position the marker on the documented 3425 Hyde Park Boulevard building.
+  carborundumGlobarSite.geometry.coordinates = [-79.0336492, 43.1189842];
   Object.assign(carborundumGlobarSite.properties, {
     title:"Carborundum Company — Globar Division",
     company_group:"Carborundum",
     site_type:"Heating-element and resistor manufacturing site",
     imported_address:"3425 Hyde Park Boulevard, Town of Niagara, New York",
-    review_status:"Historical identity verified against the 1955 Sanborn map, sheet 105. Marker position retained within the documented Globar property.",
+    review_status:"Historical identity and location verified against the 1955 Sanborn map, sheet 105, and the NYSDEC record for 3425 Hyde Park Boulevard.",
     historical_context:"The 1955 Sanborn map identifies this facility as the Carborundum Company’s Globar Division, which manufactured Globar heating elements and resistors. Globar was a Carborundum division and is not the separate Globe Metallurgical company.",
     official_reference:"https://extapps.dec.ny.gov/data/DecDocs/932036/Work%20Plan.HW.932036.2024-04-30.Site%20Management%20Plan.pdf",
     references:[],
