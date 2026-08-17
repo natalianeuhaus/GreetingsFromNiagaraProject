@@ -284,6 +284,42 @@ if (aircoPropertiesSite) {
   aircoPropertiesSite.properties.historical_context = "This marker represents the Airco Properties portion of the former Vanadium Corporation of America site. Airco retained the eastern 25 acres after SKW Alloys purchased the western 37 acres in 1979. This light-purple marker identifies that later Airco parcel, not the earlier Vanadium company or the separate Airco Alloys name used at the Highland Avenue plant.";
 }
 
+// v1.64: correct the Hyde Park / Military Road facility identities from
+// the 1955 Sanborn map, sheet 105. Globe Metallurgical remains separate.
+const nationalCarbonSite = sites.features.find((feature) =>
+  feature.properties && feature.properties.map_id === "SITE-022"
+);
+if (nationalCarbonSite) {
+  Object.assign(nationalCarbonSite.properties, {
+    title:"National Carbon Company — Union Carbide",
+    company_group:"Union Carbide (Linde / Electromet)",
+    site_type:"Carbon-electrode manufacturing site",
+    imported_address:"4113 Military Road, Town of Niagara, New York",
+    review_status:"Historical identity verified against the 1955 Sanborn map, sheet 105. Marker position retained from the existing map point.",
+    historical_context:"The 1955 Sanborn map identifies this facility as the National Carbon Company, a division of Union Carbide and Carbon Corporation. The plant manufactured carbon electrodes. It was distinct from the Carborundum Company’s Globar Division shown separately on the same map.",
+    references:[],
+    reference_count:0
+  });
+  delete nationalCarbonSite.properties.official_reference;
+}
+
+const carborundumGlobarSite = sites.features.find((feature) =>
+  feature.properties && feature.properties.map_id === "SITE-023"
+);
+if (carborundumGlobarSite) {
+  Object.assign(carborundumGlobarSite.properties, {
+    title:"Carborundum Company — Globar Division",
+    company_group:"Carborundum",
+    site_type:"Heating-element and resistor manufacturing site",
+    imported_address:"3425 Hyde Park Boulevard, Town of Niagara, New York",
+    review_status:"Historical identity verified against the 1955 Sanborn map, sheet 105. Marker position retained within the documented Globar property.",
+    historical_context:"The 1955 Sanborn map identifies this facility as the Carborundum Company’s Globar Division, which manufactured Globar heating elements and resistors. Globar was a Carborundum division and is not the separate Globe Metallurgical company.",
+    official_reference:"https://extapps.dec.ny.gov/data/DecDocs/932036/Work%20Plan.HW.932036.2024-04-30.Site%20Management%20Plan.pdf",
+    references:[],
+    reference_count:1
+  });
+}
+
 // v1.29: Tonawanda Coke remains a factory/site group. Its factory marker is deliberately
 // offset slightly northwest of the TENORM marker so both symbols remain visible and clickable.
 sites.features.push({
@@ -634,6 +670,12 @@ function factoryIdentity(p){
  }
  if(title==="Bell Factory"){
    return {current:"Former Bell industrial property; present use varies by parcel",address:p.imported_address||"Niagara Falls, NY"};
+ }
+ if(title==="National Carbon Company — Union Carbide"){
+   return {current:"Former National Carbon / Union Carbide industrial property",address:"4113 Military Road, Town of Niagara, NY"};
+ }
+ if(title==="Carborundum Company — Globar Division"){
+   return {current:"Former Carborundum Globar property",address:"3425 Hyde Park Boulevard, Town of Niagara, NY"};
  }
  return null;
 }
