@@ -348,10 +348,14 @@ const correctedVanadiumHistorySite = sites.features.find((feature) =>
 );
 if (correctedVanadiumHistorySite) {
   Object.assign(correctedVanadiumHistorySite.properties, {
-    historical_context:"Vanadium Corporation of America operated the larger Witmer Road site from 1920 until 1964. In 1964, the Air Reduction Company, parent of Airco Properties, purchased the remaining 62 acres. SKW acquired the western 37 acres in 1979, while Airco retained the eastern 25.142-acre landfill. This former Vanadium property is distinct from the Pittsburgh Metallurgical / Airco Alloys / SKW / Globe Metallurgical plant at 3807 Highland Avenue.",
+    historical_context:"Vanadium Corporation of America operated the larger Witmer Road site from 1920 until 1964. In 1964, the Air Reduction Company, parent of Airco Properties, purchased the remaining 62 acres. SKW acquired the western 37 acres in 1979, while Airco retained the eastern 25.142-acre landfill.",
     review_status:"Site history corrected against the NYSDEC Airco Properties Site No. 932001B reclassification package.",
     official_reference:"https://extapps.dec.ny.gov/data/DecDocs/932001B/Report.HW.932001B.2014-12-17.Approved%20Reclass%202%20to%204%20Package.pdf"
   });
+  correctedVanadiumHistorySite.properties.references = (correctedVanadiumHistorySite.properties.references || []).filter((reference) =>
+    reference.source_id !== "SRC-0018"
+  );
+  correctedVanadiumHistorySite.properties.reference_count = correctedVanadiumHistorySite.properties.references.length;
 }
 
 // v1.29: Tonawanda Coke remains a factory/site group. Its factory marker is deliberately
