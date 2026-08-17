@@ -21,10 +21,10 @@ html body .site-brand-control:visited {
   transform: none !important;
   filter: none !important;
 
-  transition: none !important;
+  transition: letter-spacing .22s ease !important;
 }
 
-/* Keep the map wordmark completely static on hover. */
+/* Match the subtle widening used by the wordmark on the other pages. */
 html body .site-brand-control:hover,
 html body .site-brand-control:focus-visible {
   background-color: #050505 !important;
@@ -32,7 +32,7 @@ html body .site-brand-control:focus-visible {
   color: #fff !important;
   -webkit-text-fill-color: #fff !important;
 
-  letter-spacing: 0.12em !important;
+  letter-spacing: 0.145em !important;
   box-shadow: none !important;
   opacity: 1 !important;
   transform: none !important;
