@@ -2433,7 +2433,7 @@ const all=L.featureGroup([...siteMarkers,...factorySurveyMarkers,...brownfieldMa
 map.eachLayer(layer=>enableUniformSymbolZoomInLayer(layer));
 
 // Opening position restored to the same center and zoom as v0.48.
-const OPENING_CENTER = [43.1394, -79.0567];
+const OPENING_CENTER = initialMapCenter;
 const OPENING_ZOOM = 12.75;
 function applyOpeningView(){
   map.invalidateSize({pan:false});
