@@ -101,3 +101,13 @@
     });
   });
 })();
+
+// Use the same approved GF browser icon throughout the site.
+(() => {
+  const icon = document.createElement("link");
+  icon.rel = "icon";
+  icon.type = "image/x-icon";
+  icon.sizes = "16x16 32x32 48x48";
+  icon.href = new URL("favicon-gf.ico?v=1", document.currentScript.src).href;
+  document.head.appendChild(icon);
+})();
