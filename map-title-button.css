@@ -29,6 +29,12 @@ html body:not(.site-page) .map-site-header .site-wordmark{
   white-space:nowrap!important;
 }
 
+/* Match the shared home link's hover and keyboard-focus effect. */
+html body:not(.site-page) .map-site-header .site-wordmark:hover,
+html body:not(.site-page) .map-site-header .site-wordmark:focus-visible{
+  letter-spacing:.145em!important;
+}
+
 html body:not(.site-page) .global-menu-button--map{
   position:fixed!important;
   z-index:3005!important;
