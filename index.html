@@ -2439,6 +2439,21 @@ function applyOpeningView(){
   map.invalidateSize({pan:false});
   map.setView(OPENING_CENTER, OPENING_ZOOM, {animate:false, reset:true});
 }
+// The dossier opens this map in a responsive iframe. Keep Leaflet's tile grid
+// synchronized with its actual width so no black strips appear at the edges.
+let mapViewportResizeTimer;
+function synchronizeMapViewport(){
+  clearTimeout(mapViewportResizeTimer);
+  mapViewportResizeTimer=setTimeout(()=>map.invalidateSize({pan:false}),80);
+}
+if(typeof ResizeObserver!=="undefined"){
+  new ResizeObserver(synchronizeMapViewport).observe(map.getContainer());
+}
+window.addEventListener("resize",synchronizeMapViewport,{passive:true});
+window.addEventListener("pageshow",synchronizeMapViewport);
+document.addEventListener("visibilitychange",()=>{
+  if(!document.hidden)synchronizeMapViewport();
+});
 /* Reapply after the sidebar, fonts, and map tiles finish sizing so the map
    always opens at the intended Niagara Falls framing. */
 requestAnimationFrame(()=>requestAnimationFrame(applyOpeningView));
